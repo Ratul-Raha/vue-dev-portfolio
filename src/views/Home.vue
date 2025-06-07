@@ -16,9 +16,6 @@
       <section id="projectsSection">
         <ProjectsSection ref="projectsSection" />
       </section>
-      <section id="contactSection">
-        <ContactSection ref="contactSection" />
-      </section>
     </el-col>
     <el-col :span="6" class="menu-col">
       <SideMenu @navigate="scrollToSection" />
