@@ -11,23 +11,24 @@
     >
       <el-menu-item index="homeSection">HOME</el-menu-item>
       <el-menu-item index="aboutSection">ABOUT ME</el-menu-item>
-      <el-menu-item index="servicesSection">MY SERVICES</el-menu-item>
+      <el-menu-item index="servicesSection">TECHNOLOGIA</el-menu-item>
+      <el-menu-item index="experienceSection">WORK EXPERIENCE</el-menu-item>
       <el-menu-item index="projectsSection">MY PROJECTS</el-menu-item>
-       <el-menu-item index="projectsSection">WORK EXPERIENCE</el-menu-item>
+
       <el-menu-item index="contactSection">CONTACT ME</el-menu-item>
     </el-menu>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch } from "vue";
 
-const emit = defineEmits(['navigate'])
-const active = ref('homeSection') // HOME will be active initially
+const emit = defineEmits(["navigate"]);
+const active = ref("homeSection"); // HOME will be active initially
 
 function handleSelect(index) {
-  active.value = index
-  emit('navigate', index)
+  active.value = index;
+  emit("navigate", index);
 }
 
 // Optional: If you want to allow parent to control active tab, accept a prop and watch it
@@ -43,7 +44,7 @@ function handleSelect(index) {
   margin: 0;
   min-width: 300px;
   user-select: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   overflow-y: auto;
 }
 
@@ -65,7 +66,6 @@ function handleSelect(index) {
   border-right: none !important;
 }
 
-
 .menu-items ::v-deep(.el-menu-item.is-active) {
   color: #60a5fa !important;
   background: rgba(96, 165, 250, 0.15);
@@ -77,7 +77,7 @@ function handleSelect(index) {
 }
 
 .menu-items ::v-deep(.el-menu-item:hover)::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -100%;
   top: 0;

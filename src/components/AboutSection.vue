@@ -11,16 +11,15 @@
           <div class="desc-segment">
             <h4 class="segment-title">What I Do</h4>
             <p class="description">
-                For the past 2 years at
-                <a
+              For the past 2 years at
+              <a
                 href="https://wpmanageninja.com"
                 target="_blank"
                 class="fluentcart-link"
-                >
-                WPManageNinja
-                </a>,
-                I've been a core developer
-              on a high-impact WordPress plugin project:
+              >
+                WPManageNinja </a
+              >, I've been a core developer on a high-impact WordPress plugin
+              project:
               <a
                 href="https://www.fluentcart.com"
                 target="_blank"
@@ -35,24 +34,19 @@
             </p>
             <p class="description">
               Before that, I contributed to global, enterprise-level solutions
-              at SJ Innovation, a New York-based software company where I worked
-              on full-stack applications using React, Node.js, and Express.js—
-              collaborating across time zones and functions in agile teams.
+              at SJ Innovation, a New York-based software company. There, I
+              worked on full-stack applications using React, Node.js, and
+              Express.js—collaborating across time zones in agile teams. I was
+              also involved in developing a HIPAA-compliant EMR platform,
+                <a
+                href="https://calypsaproemr.com"
+                target="_blank"
+                class="fluentcart-link"
+                >
+                CalypsaProEMR
+                </a>, built with PHP, which emphasized secure data
+              handling and healthcare compliance.
             </p>
-          </div>
-
-          <div class="desc-segment">
-            <h4 class="segment-title">Core Strengths</h4>
-            <p class="description">
-              Here are some of my key skills and expertise:
-            </p>
-            <ul class="list">
-              <li>PHP & WordPress Plugin Development</li>
-              <li>Modern Frontend Frameworks: Vue.js, React</li>
-              <li>Backend & APIs: Node.js, Express.js</li>
-              <li>Software Architecture & Problem Solving</li>
-              <li>Cross-Functional Collaboration in Agile Environments</li>
-            </ul>
           </div>
 
           <div class="desc-segment">
@@ -147,7 +141,6 @@ defineExpose({ sectionRef });
   animation: growLine 1.2s ease forwards;
 }
 
-
 .section-divider {
   width: 64px;
   height: 4px;
@@ -181,14 +174,11 @@ defineExpose({ sectionRef });
   animation: pulseHighlight 2s infinite;
 }
 
-
-
 .description {
   font-size: 1.1rem;
   color: #d4d4d8;
   line-height: 1.8;
   margin-bottom: 16px;
-  
 }
 
 ul.list {
@@ -254,7 +244,6 @@ ul.list li {
     text-shadow: 0 0 18px rgba(96, 165, 250, 0.9);
   }
 }
-
 
 @keyframes growLine {
   from {

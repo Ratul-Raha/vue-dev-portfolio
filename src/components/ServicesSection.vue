@@ -2,7 +2,7 @@
   <section ref="sectionRef" class="services-section">
     <div class="content-wrapper">
       <div class="services-header">
-        <h2 class="section-heading">Tech Stacks</h2>
+        <h2 class="section-heading">Technologia</h2>
         <p class="section-description">
           These are the core technologies I work with to build fast, scalable,
           and reliable digital solutions—from dynamic frontends to powerful
@@ -13,7 +13,6 @@
       <el-row :gutter="32" justify="start" align="top" class="services-container">
         <!-- Technologies -->
         <el-col :xs="48" :sm="48" :md="24" class="technologies-column">
-          <h3 class="sub-section-title tech-section-title">Technologies I Use</h3>
           <div
             v-for="(techGroup, index) in technologies"
             :key="index"
@@ -61,9 +60,9 @@ const technologies = [
     sector: "Backend",
     techs: [
       { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-      { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" },
+      { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
       { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" }
+      { name: "Express.js", icon: "https://img.icons8.com/?size=100&id=2ZOaTclOqD4q&format=png&color=000000" },
     ]
   },
   {
@@ -73,14 +72,6 @@ const technologies = [
       { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" }
     ]
   },
-  {
-    sector: "DevOps & Cloud",
-    techs: [
-      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
-      { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg" }
-    ]
-  }
 ];
 </script>
 
@@ -94,7 +85,6 @@ const technologies = [
 .services-header {
   max-width: 1100px;
   margin: 0 auto 40px auto;
-  padding: 0 20px;
   text-align: left;
 }
 .section-heading {
@@ -113,11 +103,11 @@ const technologies = [
   line-height: 1.6;
 }
 .sub-section-title.tech-section-title {
-  margin-left: 20px;
+  margin-left: 0px;
 }
 .tech-group {
   margin-bottom: 32px;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 .tech-sector {
   font-size: 1.2rem;
