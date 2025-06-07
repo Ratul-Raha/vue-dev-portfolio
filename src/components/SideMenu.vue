@@ -14,8 +14,6 @@
       <el-menu-item index="servicesSection">TECHNOLOGIA</el-menu-item>
       <el-menu-item index="experienceSection">WORK EXPERIENCE</el-menu-item>
       <el-menu-item index="projectsSection">MY PROJECTS</el-menu-item>
-
-      <el-menu-item index="contactSection">CONTACT ME</el-menu-item>
     </el-menu>
   </div>
 </template>

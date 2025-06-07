@@ -33,23 +33,36 @@
           >
             🌟 View Projects
           </el-button>
-          <el-button
+            <el-button
             round
             type="info"
             size="large"
             plain
-            @click="$emit('navigate', 'contactSection')"
-          >
-            ✉️ Contact Me
-          </el-button>
+            >
+            <a
+              href="https://www.linkedin.com/in/goutom-kumer-dash-ratul-7b48471b9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: inherit; text-decoration: none;"
+            >
+              ✉️ Contact Me
+            </a>
+            </el-button>
         </div>
       </el-col>
 
-      <el-col :xs="24" :md="10" class="image-wrapper">
+      <el-col
+        :xs="24"
+        :md="10"
+        class="image-wrapper"
+        @mousemove="handleMouseMove"
+        @mouseleave="resetTransform"
+      >
         <el-image
           :src="MeImage"
           fit="cover"
           class="hero-image"
+          :style="{ transform: imageTransform }"
           :preview-src-list="[MeImage]"
           alt="Goutom Dash"
         />
@@ -59,26 +72,48 @@
 </template>
 
 <script setup>
-import MeImage from '../assets/images/me.png'
+import MeImage from "../assets/images/me.png";
+import { ref } from "vue";
 
 const languages = [
-  'js',
-  'ts',
-  'vue',
-  'next',
-  'wordpress',
-  'php',
-  'sql',
-  'html',
-  'css',
-  'node',
-  'react'
-]
+  "js",
+  "ts",
+  "vue",
+  "next",
+  "wordpress",
+  "php",
+  "sql",
+  "html",
+  "css",
+  "node",
+  "react",
+];
+
+const imageTransform = ref("translate(0px, 0px)");
+
+const handleMouseMove = (event) => {
+  const container = event.currentTarget.getBoundingClientRect();
+  const centerX = container.left + container.width / 2;
+  const centerY = container.top + container.height / 2;
+
+  const deltaX = event.clientX - centerX;
+  const deltaY = event.clientY - centerY;
+
+  // Calculate the inverse offset (fly away)
+  const maxOffset = 40;
+  const offsetX = Math.max(-maxOffset, Math.min(maxOffset, -deltaX / 10));
+  const offsetY = Math.max(-maxOffset, Math.min(maxOffset, -deltaY / 10));
+
+  imageTransform.value = `translate(${offsetX}px, ${offsetY}px)`;
+};
+
+const resetTransform = () => {
+  imageTransform.value = "translate(0px, 0px)";
+};
 </script>
 
 <style scoped>
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap");
 
 .hero-section {
   min-height: 100vh;
@@ -87,7 +122,7 @@ const languages = [
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: #d1d5db;
 }
 
@@ -116,7 +151,7 @@ const languages = [
 }
 
 .rotating-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   color: rgba(96, 165, 250, 0.7);
@@ -140,7 +175,7 @@ const languages = [
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 3.25rem;
   font-weight: 400;
   color: #e0e7ff;
@@ -154,7 +189,7 @@ const languages = [
 }
 
 .hero-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.6rem;
   font-weight: 600;
   color: #93c5fd;
@@ -163,7 +198,7 @@ const languages = [
 }
 
 .hero-location {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.125rem;
   color: #a1a1aa;
   margin-bottom: 24px;
@@ -179,7 +214,7 @@ const languages = [
   background-color: #2563eb;
   border-color: #2563eb;
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
 }
 
@@ -209,5 +244,7 @@ const languages = [
   height: auto;
   object-fit: contain;
   max-width: 100%;
+  transition: transform 0.4s ease;
+  will-change: transform;
 }
 </style>
