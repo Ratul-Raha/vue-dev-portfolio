@@ -12,14 +12,14 @@
 
       <el-timeline>
         <el-timeline-item
-          v-for="(projects, year) in projectsByYear"
+          v-for="year in orderedYears"
           :key="year"
           color="#60a5fa"
         >
           <h4 class="year-header">{{ year }}</h4>
           <ul class="project-list">
             <li
-              v-for="(project, index) in projects"
+              v-for="(project, index) in projectsByYear[year]"
               :key="index"
               class="project-title"
             >
@@ -35,7 +35,6 @@
                   </span>
                 </span>
               </div>
-
               <div class="project-links">
                 <a v-if="project.live" :href="project.live" target="_blank">Live</a>
                 <a v-if="project.github" :href="project.github" target="_blank">GitHub</a>
@@ -115,7 +114,7 @@ const projects = [
   },
 ];
 
-const orderedYears = ["2021", "2022", "2023", "2023–2025"];
+const orderedYears = ["2023–2025", "2023", "2022", "2021"];
 
 const projectsByYear = computed(() => {
   const grouped = {};
@@ -243,6 +242,13 @@ const projectsByYear = computed(() => {
   }
   50% {
     text-shadow: 0 0 18px rgba(96, 165, 250, 0.9);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 </style>

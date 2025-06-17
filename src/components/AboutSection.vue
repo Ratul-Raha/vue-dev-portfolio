@@ -264,4 +264,11 @@ ul.list li {
     transform: translateY(0);
   }
 }
+
+@media (max-width: 600px) {
+  .about-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 </style>
