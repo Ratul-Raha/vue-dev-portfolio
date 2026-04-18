@@ -67,80 +67,33 @@
         </div>
 
         <div class="hero-right">
-          <div class="profile-card">
-            <div class="card-header">
-              <div class="header-tabs">
-                <span class="tab active">profile.tsx</span>
-                <span class="tab">info.json</span>
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
               </div>
-              <div class="header-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
+              <span class="terminal-title">bash — generate-profile</span>
             </div>
-            <div class="card-body">
-              <div class="code-block">
-                <div class="code-line">
-                  <span class="line-num">1</span>
-                  <span class="line-content"><span class="code-comment">/**</span></span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">2</span>
-                  <span class="line-content"><span class="code-comment"> * Developer Profile</span></span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">3</span>
-                  <span class="line-content"><span class="code-comment"> */</span></span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">4</span>
-                  <span class="line-content"><span class="code-key">const</span> <span class="code-var">developer</span> = {</span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">5</span>
-                  <span class="line-content">  <span class="code-key">name</span>: <span class="code-string">"Goutom Dash"</span>,</span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">6</span>
-                  <span class="line-content">  <span class="code-key">role</span>: <span class="code-string">"Software Engineer"</span>,</span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">7</span>
-                  <span class="line-content">  <span class="code-key">location</span>: <span class="code-string">"Sylhet, BD"</span>,</span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">8</span>
-                  <span class="line-content">  <span class="code-key">stack</span>: [<span class="code-string">"Vue.js"</span>, <span class="code-string">"React"</span>, <span class="code-string">"PHP"</span>],</span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">9</span>
-                  <span class="line-content">  <span class="code-key">photo</span>: </span><span class="code-string">"</span><span class="img-ref">me.png</span><span class="code-string">"</span><span class="comma">,</span>
-                </div>
-                <div class="code-line">
-                  <span class="line-num">10</span>
-                  <span class="line-content">};</span>
-                </div>
-              </div>
-
-              <div class="profile-image">
-                <div class="img-frame">
-                  <img :src="MeImage" alt="Goutom Dash" class="profile-img" />
-                  <div class="img-overlay">
-                    <span class="overlay-emoji">&#128187;</span>
+            <div class="terminal-body">
+              <div class="terminal-split">
+                <div class="terminal-left">
+                  <div class="cli-code">
+                    <div v-for="(line, index) in cliLines" :key="index" class="cli-line" :class="{ visible: lineVisible[index] }">
+                      <span class="cli-prompt">$</span>
+                      <span class="cli-text" v-html="line"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="status-bar">
-                <span class="status-item">
-                  <span class="status-dot green"></span>
-                  Available
-                </span>
-                <span class="status-item">
-                  <span class="status-dot"></span>
-                  Open to work
-                </span>
+                <div class="terminal-right">
+                  <div class="image-reveal-container">
+                    <img :src="MeImage" alt="Goutom Dash" class="revealed-image" :style="{ clipPath: revealClipPath }" />
+                    <div class="reveal-overlay" v-if="!revealComplete">
+                      <span class="loading-dots">{{ loadingDots }}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -152,10 +105,12 @@
 
 <script setup>
 import MeImage from "../assets/images/me.png";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const typedText = ref("");
 const fullText = "Welcome to my portfolio";
+
+const revealClipPath = computed(() => `inset(0 0 ${100 - revealProgress.value}% 0)`);
 
 let charIndex = 0;
 let typingInterval = null;
@@ -168,12 +123,84 @@ function typeText() {
   }
 }
 
+const cliLines = [
+  '<span class="cmd">npm</span> <span class="arg">init</span> developer-profile',
+  '<span class="comment">// Loading modules...</span>',
+  '<span class="var">const</span> <span class="name">skills</span> = [<span class="str">"Vue"</span>, <span class="str">"React"</span>, <span class="str">"Node"</span>]',
+  '<span class="func">import</span> <span class="imp">passion</span> <span class="from">from</span> <span class="str">"./heart"</span>',
+  '<span class="comment">// Generating output...</span>',
+  '<span class="var">await</span> <span class="func">renderImage</span>(<span class="str">"me.png"</span>)',
+  '<span class="success">✓ Profile rendered successfully</span>'
+];
+
+const lineVisible = ref([]);
+const revealProgress = ref(0);
+const revealComplete = ref(false);
+const loadingDots = ref("...");
+
+let cliLineIndex = 0;
+let cliCharIndex = 0;
+let cliInterval = null;
+let revealInterval = null;
+let dotsInterval = null;
+
+function animateCLI() {
+  if (cliLineIndex >= cliLines.length) return;
+  
+  if (cliCharIndex === 0) {
+    lineVisible.value[cliLineIndex] = false;
+  }
+  
+  cliCharIndex++;
+  lineVisible.value[cliLineIndex] = cliCharIndex >= cliLines[cliLineIndex].length;
+  
+  if (lineVisible.value[cliLineIndex]) {
+    cliLineIndex++;
+    cliCharIndex = 0;
+    if (cliLineIndex < cliLines.length) {
+      cliInterval = setTimeout(animateCLI, 80);
+    } else {
+      startImageReveal();
+    }
+  } else {
+    cliInterval = setTimeout(animateCLI, 5);
+  }
+}
+
+function startImageReveal() {
+  revealInterval = setInterval(() => {
+    revealProgress.value += 2;
+    if (revealProgress.value >= 100) {
+      revealProgress.value = 100;
+      revealComplete.value = true;
+      clearInterval(revealInterval);
+    }
+  }, 40);
+}
+
+function animateDots() {
+  const dots = [".", "..", "..."];
+  let i = 0;
+  dotsInterval = setInterval(() => {
+    loadingDots.value = dots[i];
+    i = (i + 1) % dots.length;
+  }, 300);
+}
+
 onMounted(() => {
   setTimeout(typeText, 500);
+  setTimeout(() => {
+    lineVisible.value = new Array(cliLines.length).fill(false);
+    animateCLI();
+    animateDots();
+  }, 1000);
 });
 
 onUnmounted(() => {
   if (typingInterval) clearTimeout(typingInterval);
+  if (cliInterval) clearTimeout(cliInterval);
+  if (revealInterval) clearInterval(revealInterval);
+  if (dotsInterval) clearInterval(dotsInterval);
 });
 </script>
 
@@ -356,151 +383,145 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-.profile-card {
-  background: #1e1e1e;
-  border-radius: 8px;
+.terminal-card {
+  background: #0d1117;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  border: 1px solid #30363d;
+  font-family: var(--gh-font-mono);
 }
 
-.card-header {
+.terminal-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
-  background: #2d2d2d;
-}
-
-.header-tabs {
-  display: flex;
   gap: 12px;
-}
-
-.tab {
-  font-family: var(--gh-font-mono);
-  font-size: 0.8rem;
-  color: #6e7681;
-}
-
-.tab.active {
-  color: #c9d1d9;
-  background: #1e1e1e;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.header-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #6e7681;
-}
-
-.dot:first-child { background: #f85149; }
-.dot:nth-child(2) { background: #e3b341; }
-.dot:nth-child(3) { background: #3fb950; }
-
-.code-block {
-  padding: 12px;
+  padding: 12px 16px;
+  background: #161b22;
   border-bottom: 1px solid #30363d;
 }
 
-.code-line {
+.terminal-dots {
   display: flex;
-  font-family: var(--gh-font-mono);
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.red { background: #f85149; }
+.dot.yellow { background: #e3b341; }
+.dot.green { background: #3fb950; }
+
+.terminal-title {
   font-size: 0.8rem;
+  color: #8b949e;
 }
 
-.line-num {
-  width: 20px;
-  color: #484f58;
-  user-select: none;
-}
-
-.line-content {
-  color: #c9d1d9;
-}
-
-.code-comment { color: #8b949e; }
-.code-key { color: #79c0ff; }
-.code-var { color: #d2a8ff; }
-.code-string { color: #a5d6ff; }
-.img-ref { color: #7ee787; }
-.comma { color: #c9d1d9; }
-
-.profile-image {
+.terminal-body {
   padding: 16px;
+}
+
+.terminal-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-height: 280px;
+}
+
+.terminal-left {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-.img-frame {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid #30363d;
+.cli-code {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.profile-img {
+.cli-line {
+  display: flex;
+  gap: 8px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cli-line.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cli-prompt {
+  color: #3fb950;
+}
+
+.cli-text :deep(.cmd) { color: #79c0ff; }
+.cli-text :deep(.arg) { color: #a5d6ff; }
+.cli-text :deep(.comment) { color: #8b949e; }
+.cli-text :deep(.var) { color: #ff7b72; }
+.cli-text :deep(.name) { color: #d2a8ff; }
+.cli-text :deep(.func) { color: #79c0ff; }
+.cli-text :deep(.imp) { color: #ffa657; }
+.cli-text :deep(.from) { color: #8b949e; }
+.cli-text :deep(.str) { color: #a5d6ff; }
+.cli-text :deep(.success) { color: #3fb950; }
+
+.terminal-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #161b22;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-reveal-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.revealed-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 6px;
 }
 
-.img-overlay {
+.reveal-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(30, 30, 30, 0.7);
+  background: rgba(13, 17, 23, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
 }
 
-.img-frame:hover .img-overlay {
-  opacity: 1;
+.loading-dots {
+  font-size: 1.2rem;
+  color: #3fb950;
+  animation: pulse 1s ease infinite;
 }
 
-.overlay-emoji {
-  font-size: 2rem;
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
-
-.status-bar {
-  display: flex;
-  gap: 16px;
-  padding: 10px 12px;
-  border-top: 1px solid #30363d;
-  background: #262c36;
-}
-
-.status-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--gh-font-mono);
-  font-size: 0.75rem;
-  color: #8b949e;
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #484f58;
-}
-
-.status-dot.green { background: #3fb950; }
 
 @media (max-width: 1024px) {
   .hero-grid {
@@ -513,6 +534,20 @@ onUnmounted(() => {
   .hero-title { font-size: 2.4rem; }
   .hero-actions { justify-content: center; }
   .hero-stats { justify-content: center; }
+
+  .terminal-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .terminal-left {
+    order: 2;
+  }
+
+  .terminal-right {
+    order: 1;
+    min-height: 200px;
+  }
 }
 
 @media (max-width: 600px) {

@@ -60,7 +60,10 @@
 
           <div class="cards-row">
             <div class="content-card">
-              <div class="card-icon">&#128187;</div>
+              <div class="card-badge">
+                <span class="badge-dot"></span>
+                <span class="badge-text">feat</span>
+              </div>
               <h3 class="card-title">My Journey</h3>
               <p class="card-text">
                 Currently at <a href="https://wpmanageninja.com" target="_blank">WPManageNinja</a>, I'm a core developer on
@@ -74,7 +77,10 @@
             </div>
 
             <div class="content-card">
-              <div class="card-icon">&#129302;</div>
+              <div class="card-badge">
+                <span class="badge-dot purple"></span>
+                <span class="badge-text">feat</span>
+              </div>
               <h3 class="card-title">AI & Automation</h3>
               <p class="card-text">
                 I've integrated AI into SaaS products and built automation tools. I develop Chrome extensions with TypeScript and create workflows with n8n for smarter, efficient product experiences.
@@ -82,7 +88,10 @@
             </div>
 
             <div class="content-card">
-              <div class="card-icon">&#127918;</div>
+              <div class="card-badge">
+                <span class="badge-dot gray"></span>
+                <span class="badge-text">chore</span>
+              </div>
               <h3 class="card-title">Beyond Code</h3>
               <ul class="hobby-list">
                 <li>Competitive Programming (ACM Alumni)</li>
@@ -271,11 +280,53 @@ defineExpose({ sectionRef });
   border: 1px solid var(--gh-border-light);
   border-radius: 6px;
   padding: 20px;
+  transition: all 0.2s ease;
 }
 
-.card-icon {
-  font-size: 1.5rem;
+.content-card:hover {
+  border-color: var(--gh-border);
+  transform: translateY(-2px);
+}
+
+.card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 12px;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2da44e;
+}
+
+.badge-dot.purple {
+  background: #8250df;
+}
+
+.badge-dot.gray {
+  background: #6e7781;
+}
+
+.badge-text {
+  font-family: var(--gh-font-mono);
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 12px;
+  background: #dafbe1;
+  color: #1a7f37;
+}
+
+.badge-dot.purple + .badge-text {
+  background: #f3d9fd;
+  color: #8250df;
+}
+
+.badge-dot.gray + .badge-text {
+  background: #8c8fa1;
+  color: #24292f;
 }
 
 .card-title {
