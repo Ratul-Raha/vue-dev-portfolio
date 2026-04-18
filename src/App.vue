@@ -1,6 +1,6 @@
 <template>
   <div class="github-app">
-    <canvas ref="threeCanvas" class="three-canvas"></canvas>
+    <canvas ref="threeCanvas" class="three-canvas" :class="{ hidden: !isHomePage }"></canvas>
     <TopMenu />
     <router-view />
   </div>
@@ -8,15 +8,22 @@
 
 <script setup>
 import TopMenu from './components/TopMenu.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import * as THREE from 'three'
 
+const route = useRoute()
 const threeCanvas = ref(null)
+const isHomePage = ref(route.path === '/')
 
 onMounted(() => {
   if (threeCanvas.value) {
     initThreeJS()
   }
+})
+
+watch(() => route.path, (path) => {
+  isHomePage.value = path === '/'
 })
 
 function initThreeJS() {
@@ -165,6 +172,10 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 0;
+}
+
+.three-canvas.hidden {
+  display: none;
 }
 
 main {
