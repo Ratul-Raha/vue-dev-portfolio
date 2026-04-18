@@ -1,19 +1,32 @@
 <template>
-  <el-row :gutter="0" class="min-h-screen">
-    <el-col :span="18" class="bg-white">
-      <section id="homeSection"><HeroSection /></section>
-      <section id="aboutSection"><AboutSection /></section>
-      <section id="servicesSection"><ServicesSection /></section>
-      <section id="experienceSection"><WorkExperience /></section>
-      <section id="projectsSection"><ProjectsSection /></section>
-    </el-col>
-    <el-col :span="6" class="menu-col">
-      <SideMenu
-        :active-section="activeSection"
-        @navigate="scrollToSection"
-      />
-    </el-col>
-  </el-row>
+  <div class="gh-home">
+    <el-row :gutter="0" class="min-h-screen">
+      <el-col :span="19" class="main-content">
+        <section id="homeSection"><HeroSection /></section>
+        <section id="aboutSection"><AboutSection /></section>
+        <section id="servicesSection"><ServicesSection /></section>
+        <section id="experienceSection"><WorkExperience /></section>
+        <section id="projectsSection"><ProjectsSection /></section>
+        <footer class="gh-footer">
+          <div class="footer-content">
+            <div class="footer-line"></div>
+            <p class="footer-text">
+              <span class="terminal-prompt">$</span> made with
+              <span class="heart">&#x2665;</span> and lots of
+              <span class="code-accent">&lt;/&gt;</span>
+            </p>
+            <p class="footer-year">2023-2025 // MIT License</p>
+          </div>
+        </footer>
+      </el-col>
+      <el-col :span="5" class="sidebar-col">
+        <SideMenu
+          :active-section="activeSection"
+          @navigate="scrollToSection"
+        />
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script setup>
@@ -46,7 +59,7 @@ function handleScroll() {
     const el = document.getElementById(sectionIds[i]);
     if (el) {
       const rect = el.getBoundingClientRect();
-      if (rect.top <= 120) {
+      if (rect.top <= 150) {
         activeSection.value = sectionIds[i];
         break;
       }
@@ -63,48 +76,97 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.menu-col {
+.gh-home {
+  position: relative;
+  z-index: 1;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.main-content {
+  background: var(--gh-bg);
+  min-height: 100vh;
+}
+
+.sidebar-col {
   position: sticky;
   top: 0;
   height: 100vh;
-  background: #1e1e1e;
+  background: var(--gh-bg-tertiary);
+  border-left: 1px solid var(--gh-border-light);
   z-index: 10;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 0;
-  overflow: hidden;
+  align-items: flex-start;
+  padding-top: 80px;
 }
+
+.gh-footer {
+  background: var(--gh-bg);
+  padding: 48px 24px;
+  border-top: 1px solid var(--gh-border-light);
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-line {
+  width: 60px;
+  height: 3px;
+  background: var(--gh-green);
+  margin: 0 auto 20px;
+  border-radius: 2px;
+}
+
+.footer-text {
+  font-family: var(--gh-font-mono);
+  font-size: 0.95rem;
+  color: var(--gh-text-secondary);
+  margin-bottom: 8px;
+}
+
+.terminal-prompt {
+  color: var(--gh-green);
+  margin-right: 8px;
+}
+
+.heart {
+  color: var(--gh-red);
+  animation: pulse 1s ease infinite;
+}
+
+.code-accent {
+  color: var(--gh-purple);
+  font-family: var(--gh-font-mono);
+}
+
+.footer-year {
+  font-family: var(--gh-font-mono);
+  font-size: 0.85rem;
+  color: var(--gh-text-muted);
+}
+
 @media (max-width: 900px) {
-  .el-col.menu-col {
-    order: -1;
-  }
   .el-row {
     flex-direction: column !important;
-    min-height: unset;
   }
+
   .el-col {
     width: 100% !important;
     max-width: 100% !important;
     flex: 1 1 100%;
   }
-  .menu-col {
+
+  .sidebar-col {
     position: static;
     height: auto;
-    min-height: 60px;
-    padding: 0;
-    justify-content: flex-start;
-    background: #1e1e1e;
-    width: 100%;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-  }
-}
-@media (max-width: 600px) {
-  .el-row {
-    padding: 0 !important;
-  }
-  section {
-    padding: 12px 0 !important;
+    border-left: none;
+    border-top: 1px solid var(--gh-border-light);
+    padding: 12px 16px;
   }
 }
 </style>
