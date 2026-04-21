@@ -7,56 +7,17 @@
         <div class="title-line"></div>
       </div>
 
-      <div class="grid-container">
-        <div v-for="(group, gIdx) in techGroups" :key="gIdx" class="tech-box">
-          <div class="box-header">
-            <span class="folder-icon">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
-                <path d="M1 2.75A2.75 2.75 0 0 1 3.75 0h5.692c.225 0 .423.06.582.165L13.182 1h.068A2.75 2.75 0 0 1 16 3.75v8.5A2.75 2.75 0 0 1 13.25 15h-9.5A2.75 2.75 0 0 1 1 12.25v-9.5zM3.75 1.5a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V3.75a.25.25 0 0 0-.25-.25h-.068l-1.147-.948A.25.25 0 0 0 12.835 2H3.75z"/>
-              </svg>
-            </span>
-            <span class="folder-path">{{ group.path }}</span>
-            <span class="file-count">{{ group.techs.length }}</span>
+      <div class="tech-grid">
+        <div v-for="(category, idx) in techCategories" :key="idx" class="tech-category">
+          <div class="category-header">
+            <span class="category-icon" v-html="category.icon"></span>
+            <span class="category-name">{{ category.name }}</span>
           </div>
-          <div class="box-body">
-            <div
-              v-for="(tech, tIdx) in group.techs"
-              :key="tIdx"
-              class="tech-chip"
-              :style="{ animationDelay: (gIdx * 0.03 + tIdx * 0.02) + 's' }"
-            >
-              <span class="chip-icon">
-                <img :src="tech.icon" :alt="tech.name" />
-              </span>
-              <span class="chip-name">{{ tech.name }}</span>
+          <div class="tech-items">
+            <div v-for="tech in category.techs" :key="tech.name" class="tech-item">
+              <img :src="tech.icon" :alt="tech.name" class="tech-logo" />
+              <span class="tech-label">{{ tech.name }}</span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="terminal-section">
-        <div class="terminal-header-bar">
-          <div class="terminal-buttons">
-            <span class="btn red"></span>
-            <span class="btn yellow"></span>
-            <span class="btn green"></span>
-          </div>
-          <span class="terminal-label">bash ~ stack</span>
-        </div>
-        <div class="terminal-body-bar">
-          <div class="cmd-line">
-            <span class="prompt">$</span>
-            <span class="cmd">ls -la /stack</span>
-          </div>
-          <div class="output-grid">
-            <div class="output-item" v-for="(item, iIdx) in stackList" :key="iIdx">
-              <span class="out-icon" v-html="item.icon"></span>
-              <span class="out-name">{{ item.name }}</span>
-            </div>
-          </div>
-          <div class="cmd-line prompt-line">
-            <span class="prompt">$</span>
-            <span class="cursor">_</span>
           </div>
         </div>
       </div>
@@ -70,50 +31,46 @@ import { ref, defineExpose } from "vue";
 const sectionRef = ref(null);
 defineExpose({ sectionRef });
 
-const techGroups = [
+const techCategories = [
   {
-    path: "/frontend",
-    techs: [
-      { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-      { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-      { name: "JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "TS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" }
-    ]
-  },
-  {
-    path: "/frameworks",
+    name: "Frontend",
+    icon: '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M3 1l10 7.5-10 7.5L3 1z"/></svg>',
     techs: [
       { name: "Vue.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" }
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" }
     ]
   },
   {
-    path: "/backend",
+    name: "Backend",
+    icon: '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M6 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H6zm0 1h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/></svg>',
     techs: [
       { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
       { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
-      { name: "Node", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" }
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" }
     ]
   },
   {
-    path: "/database",
+    name: "Database",
+    icon: '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 1v6.5a.5.5 0 0 1-.5.5H3v2l-1.5 1.5v1.5h18v-1.5L12 14.5v-2h-.5a.5.5 0 0 1-.5-.5V1H8z"/></svg>',
     techs: [
       { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-      { name: "Mongo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" }
+      { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+      { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" }
+    ]
+  },
+  {
+    name: "Tools",
+    icon: '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M14.5 2.5l-1 1-5-5-1 1L9 0l1.5 1.5L14.5 2.5z"/></svg>',
+    techs: [
+      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" },
+      { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" }
     ]
   }
-];
-
-const stackList = [
-  { name: "Vue.js", icon: "&#9745;" },
-  { name: "React", icon: "&#9745;" },
-  { name: "PHP", icon: "&#9745;" },
-  { name: "Laravel", icon: "&#9745;" },
-  { name: "Node.js", icon: "&#9745;" },
-  { name: "WordPress", icon: "&#9745;" },
-  { name: "Git", icon: "&#9745;" },
-  { name: "Docker", icon: "&#9745;" }
 ];
 </script>
 
@@ -156,186 +113,81 @@ const stackList = [
   margin-left: 16px;
 }
 
-.grid-container {
+.tech-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: 20px;
 }
 
-.tech-box {
+.tech-category {
   background: var(--gh-bg-secondary);
   border: 1px solid var(--gh-border-light);
-  border-radius: 6px;
-  overflow: hidden;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
 }
 
-.box-header {
+.tech-category:hover {
+  border-color: var(--gh-green);
+  transform: translateY(-2px);
+}
+
+.category-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  background: var(--gh-bg-tertiary);
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--gh-border-light);
 }
 
-.folder-icon {
-  color: var(--gh-text-muted);
+.category-icon {
+  color: var(--gh-green);
   display: flex;
 }
 
-.folder-path {
+.category-name {
   font-family: var(--gh-font-mono);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--gh-text);
-  flex: 1;
 }
 
-.file-count {
-  font-family: var(--gh-font-mono);
-  font-size: 0.75rem;
-  color: var(--gh-text-muted);
-  background: var(--gh-bg);
-  padding: 2px 8px;
-  border-radius: 10px;
-}
-
-.box-body {
-  padding: 12px;
+.tech-items {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.tech-chip {
-  display: inline-flex;
+.tech-item {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
+  gap: 8px;
+  padding: 6px 10px;
   background: var(--gh-bg);
   border: 1px solid var(--gh-border-light);
-  border-radius: 4px;
-  font-family: var(--gh-font-mono);
-  font-size: 0.75rem;
-  animation: fadeInUp 0.3s ease forwards;
-  opacity: 0;
-  transition: all 0.15s ease;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.tech-chip:hover {
+.tech-item:hover {
   border-color: var(--gh-link);
-  background: var(--gh-blue-light);
 }
 
-.chip-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.chip-icon img {
-  width: 100%;
-  height: 100%;
+.tech-logo {
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
-.chip-name {
-  color: var(--gh-text);
-}
-
-.terminal-section {
-  background: #24292e;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.terminal-header-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-  background: #1c2128;
-  border-bottom: 1px solid #30363d;
-}
-
-.terminal-buttons {
-  display: flex;
-  gap: 6px;
-}
-
-.btn {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.red { background: #f85149; }
-.yellow { background: #e3b341; }
-.green { background: #3fb950; }
-
-.terminal-label {
-  font-family: var(--gh-font-mono);
-  font-size: 0.75rem;
-  color: #6e7681;
-}
-
-.terminal-body-bar {
-  padding: 12px;
-}
-
-.cmd-line {
-  display: flex;
-  gap: 8px;
-  font-family: var(--gh-font-mono);
-  font-size: 0.85rem;
-  margin-bottom: 12px;
-}
-
-.prompt {
-  color: #3fb950;
-}
-
-.cmd {
-  color: #c9d1d9;
-}
-
-.output-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #30363d;
-}
-
-.output-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.tech-label {
   font-family: var(--gh-font-mono);
   font-size: 0.8rem;
-  color: #8b949e;
-}
-
-.out-icon {
-  color: #3fb950;
-}
-
-.cursor {
-  color: #58a6ff;
-  animation: blink 1s step-end infinite;
-}
-
-.prompt-line {
-  margin-bottom: 0;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  color: var(--gh-text-secondary);
 }
 
 @media (max-width: 1024px) {
-  .grid-container {
+  .tech-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -345,13 +197,8 @@ const stackList = [
     padding: 48px 16px;
   }
 
-  .grid-container {
+  .tech-grid {
     grid-template-columns: 1fr;
-  }
-
-  .output-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
   }
 }
 </style>

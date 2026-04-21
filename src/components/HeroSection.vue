@@ -22,16 +22,9 @@
             <span class="role-value">"Software Engineer"</span>
           </p>
 
-          <p class="hero-location">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" class="loc-icon">
-              <path d="M8 0a.75.75 0 0 1 .75.75v6.069l3.195-2.598a.75.75 0 1 1 .86 1.246l-3.813 3.1A.75.75 0 0 1 7.25 9.569V.75A.75.75 0 0 1 8 0z"/>
-            </svg>
-            Based in Sylhet, Bangladesh
-          </p>
-
           <div class="hero-description">
-            <p>> Building digital products with precision and care.</p>
-            <p>> Specializing in WordPress, React, and scalable solutions.</p>
+            <p>> Full-stack developer & UI enthusiast</p>
+            <p>> Turning coffee into clean code since 2019</p>
           </div>
 
           <div class="hero-actions">

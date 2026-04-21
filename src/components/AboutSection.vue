@@ -26,8 +26,8 @@
                 <span class="value">Software Engineer</span>
               </div>
               <div class="info-row">
-                <span class="label">Location:</span>
-                <span class="value">Sylhet, Bangladesh</span>
+                <span class="label">Superpower:</span>
+                <span class="value">Coffee → Code</span>
               </div>
               <div class="info-row">
                 <span class="label">Experience:</span>
@@ -41,9 +41,9 @@
             <pre class="json-body"><code><span class="key">const</span> <span class="var">dev</span> = {
   <span class="key">name</span>: <span class="str">"Goutom Dash"</span>,
   <span class="key">role</span>: <span class="str">"Software Engineer"</span>,
-  <span class="key">location</span>: <span class="str">"Sylhet, BD"</span>,
+  <span class="key">status</span>: <span class="str">"coding"</span>,
   <span class="key">available</span>: <span class="bool">true</span>,
-  <span class="key">stack</span>: [<span class="str">"Vue.js"</span>, <span class="str">"React"</span>, <span class="str">"PHP"</span>]
+  <span class="key">superpower</span>: <span class="str">"coffee"</span>
 };</code></pre>
           </div>
         </div>

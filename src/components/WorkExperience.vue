@@ -15,12 +15,18 @@
           <div class="exp-card">
             <div class="card-header">
               <div class="company-row">
-                <span class="company-icon">
+                <span class="company-icon" v-if="job.icon === 'freelance'">
+                  <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                    <path d="M12.5.75h-9a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5zM8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm1 7.25a.75.75 0 0 1-.75.75H1.5a.75.75 0 0 1 0-1.5h5.75a.75.75 0 0 1 .75.75zm5.5-.75a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5H14z"/>
+                  </svg>
+                </span>
+                <span class="company-icon" v-else-if="!job.icon">
                   <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
                     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                     <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM1.5 8a6.5 6.5 0 1 1 13 0 6.5 6.5 0 0 1-13 0z"/>
                   </svg>
                 </span>
+                <img v-else :src="job.icon" class="company-logo-img" />
                 <h3 class="company-name">{{ job.company }}</h3>
                 <span class="company-badge">{{ job.badge }}</span>
               </div>
@@ -60,7 +66,7 @@
             <div class="responsibilities-block">
               <div class="block-title">
                 <span class="title-icon">&#10003;</span>
-                What I did
+                {{ job.badge === 'Current' ? 'What I do' : 'What I did' }}
               </div>
               <ul class="resp-list">
                 <li v-for="(resp, rIdx) in job.responsibilities" :key="rIdx">{{ resp }}</li>
@@ -75,6 +81,26 @@
 
 <script setup>
 const jobs = [
+  {
+    company: "Freelance",
+    badge: "Current",
+    duration: "2025 - Present",
+    location: "Worldwide",
+    description: "Empowering businesses with AI automation, modern web solutions, and scalable system architecture.",
+    responsibilities: [
+      "Building AI-powered automations with n8n, OpenAI, Claude, and custom GPTs",
+      "Redesigning and modernizing legacy websites with Vue.js, React, and WordPress",
+      "Consulting on system architecture and scalable solutions",
+      "Creating custom workflows to streamline business operations",
+      "Developing custom Shopify apps and eCommerce solutions"
+    ],
+    products: [
+      { name: "AI Workflows", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/n8n/n8n.svg", stats: "n8n/AI" },
+      { name: "Custom GPTs", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai.svg", stats: "OpenAI" },
+      { name: "Shopify Apps", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify.svg", stats: "Custom" }
+    ],
+    icon: "freelance"
+  },
   {
     company: "WPManage Ninja LLC",
     badge: "Current",
@@ -91,7 +117,8 @@ const jobs = [
       { name: "Fluent Forms", logo: "https://fluentforms.com/wp-content/uploads/2021/05/fluentform-icon1.png", stats: "500K+ installs" },
       { name: "FluentCRM", logo: "https://wishlistmember.com/wp-content/uploads/2021/08/fluentCRM.png", stats: "20K+ installs" },
       { name: "Fluent Support", logo: "https://fluentsupport.com/wp-content/uploads/2023/09/Group-1000015260-1-1.png", stats: "10K+ installs" }
-    ]
+    ],
+    icon: "https://wishlistnews.com/wp-content/uploads/2023/10/manage-ninja-logo.png"
   },
   {
     company: "SJ Innovation LLC",
@@ -211,6 +238,13 @@ const jobs = [
 
 .company-icon {
   color: var(--gh-text-muted);
+}
+
+.company-logo-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 4px;
 }
 
 .company-name {
