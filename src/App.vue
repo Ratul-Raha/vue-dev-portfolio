@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <BootSequence />
     <TopMenu />
     <router-view v-slot="{ Component }">
       <transition name="page" mode="out-in">
@@ -11,6 +12,7 @@
 
 <script setup>
 import TopMenu from './components/TopMenu.vue'
+import BootSequence from './components/BootSequence.vue'
 </script>
 
 <style>
