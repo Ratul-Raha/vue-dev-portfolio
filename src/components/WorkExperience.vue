@@ -1,78 +1,22 @@
 <template>
-  <section class="gh-experience">
-    <div class="exp-container">
-      <div class="section-title-row">
-        <span class="title-hash">#</span>
-        <span class="title-text">experience</span>
-        <div class="title-line"></div>
-      </div>
+  <section ref="sectionRef" class="experience reveal">
+    <div class="section-inner">
+      <h2 class="section-title"><span class="title-hash">#</span> experience</h2>
 
-      <p class="section-desc">Where I've worked</p>
+      <div class="term-line"><span class="prompt">$</span> <span class="cmd">cat</span> ~/career.log</div>
 
-      <div class="timeline">
-        <div v-for="(job, index) in jobs" :key="index" class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="exp-card">
-            <div class="card-header">
-              <div class="company-row">
-                <span class="company-icon" v-if="job.icon === 'freelance'">
-                  <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                    <path d="M12.5.75h-9a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5zM8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm1 7.25a.75.75 0 0 1-.75.75H1.5a.75.75 0 0 1 0-1.5h5.75a.75.75 0 0 1 .75.75zm5.5-.75a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5H14z"/>
-                  </svg>
-                </span>
-                <span class="company-icon" v-else-if="!job.icon">
-                  <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM1.5 8a6.5 6.5 0 1 1 13 0 6.5 6.5 0 0 1-13 0z"/>
-                  </svg>
-                </span>
-                <img v-else :src="job.icon" class="company-logo-img" />
-                <h3 class="company-name">{{ job.company }}</h3>
-                <span class="company-badge">{{ job.badge }}</span>
-              </div>
-              <span class="job-duration">{{ job.duration }}</span>
-            </div>
-
-            <div class="job-position">{{ job.position }}</div>
-
-            <div class="job-location">
-              <span class="loc-icon">
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
-                  <path d="M8 0a.75.75 0 0 1 .75.75v6.069l3.195-2.598a.75.75 0 1 1 .86 1.246l-3.813 3.1A.75.75 0 0 1 7.25 9.569V.75A.75.75 0 0 1 8 0z"/>
-                  <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM1.5 8a6.5 6.5 0 1 1 13 0 6.5 6.5 0 0 1-13 0z" fill="none"/>
-                </svg>
-              </span>
-              {{ job.location }}
-            </div>
-
-            <div class="job-desc">{{ job.description }}</div>
-
-            <div v-if="job.products?.length" class="products-block">
-              <div class="block-title">
-                <span class="title-icon">&#9733;</span>
-                Shipped Products
-              </div>
-              <div class="products-list">
-                <div v-for="(prod, pIdx) in job.products" :key="pIdx" class="product-item">
-                  <img :src="prod.logo" :alt="prod.name" class="prod-logo" />
-                  <div class="prod-info">
-                    <span class="prod-name">{{ prod.name }}</span>
-                    <span class="prod-stats">{{ prod.stats }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="responsibilities-block">
-              <div class="block-title">
-                <span class="title-icon">&#10003;</span>
-                {{ job.badge === 'Current' ? 'What I do' : 'What I did' }}
-              </div>
-              <ul class="resp-list">
-                <li v-for="(resp, rIdx) in job.responsibilities" :key="rIdx">{{ resp }}</li>
-              </ul>
-            </div>
+      <div class="tl reveal-stagger">
+        <div v-for="(job, i) in jobs" :key="i" class="tl-item">
+          <div class="tl-head">
+            <h3 class="tl-company">{{ job.company }}</h3>
+            <span class="tl-tag" :class="job.badge === 'Current' ? 'tag-curr' : 'tag-past'">[{{ job.badge }}]</span>
           </div>
+          <div class="tl-role">{{ job.position }}</div>
+          <div class="tl-meta">{{ job.duration }} &mdash; {{ job.location }}</div>
+          <p class="tl-desc">{{ job.description }}</p>
+          <ul class="tl-list">
+            <li v-for="r in job.responsibilities" :key="r">{{ r }}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -80,48 +24,44 @@
 </template>
 
 <script setup>
+import { ref } from "vue"
+import { useScrollReveal } from "../composables/useScrollReveal"
+
+const sectionRef = ref(null)
+useScrollReveal(sectionRef, 100)
+
 const jobs = [
   {
     company: "Freelance",
+    position: "Founder & AI Engineer",
     badge: "Current",
     duration: "2025 - Present",
     location: "Worldwide",
-    description: "Empowering businesses with AI automation, modern web solutions, and scalable system architecture.",
+    description: "Building AI-powered products, automation workflows, and modern web solutions.",
     responsibilities: [
-      "Building AI-powered automations with n8n, OpenAI, Claude, and custom GPTs",
-      "Redesigning and modernizing legacy websites with Vue.js, React, and WordPress",
-      "Consulting on system architecture and scalable solutions",
-      "Creating custom workflows to streamline business operations",
-      "Developing custom Shopify apps and eCommerce solutions"
-    ],
-    products: [
-      { name: "AI Workflows", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/n8n/n8n.svg", stats: "n8n/AI" },
-      { name: "Custom GPTs", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai.svg", stats: "OpenAI" },
-      { name: "Shopify Apps", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify.svg", stats: "Custom" }
-    ],
-    icon: "freelance"
+      "Architecting AI agents with n8n, OpenAI, Claude, and custom GPTs",
+      "Building AI customer support agents for WhatsApp & Telegram",
+      "Developing AI-powered CRM and event booking platforms",
+      "Modernizing legacy systems with Vue, React, and Node.js"
+    ]
   },
   {
-    company: "WPManage Ninja LLC",
+    company: "WPManageNinja LLC",
+    position: "Core Software Engineer",
     badge: "Current",
     duration: "2023 - Present",
     location: "Delaware, USA",
-    description: "Building powerful WordPress plugins for website creators worldwide.",
+    description: "Building WordPress plugins that power hundreds of thousands of websites worldwide.",
     responsibilities: [
-      "Core developer on Fluent Cart - high-impact eCommerce plugin",
-      "Improved plugin performance reducing load time by 60%",
+      "Core developer on Fluent Cart — high-impact eCommerce plugin",
+      "Improved performance reducing load time by 60%",
       "Built features serving 500K+ active users",
-      "Collaborated with cross-functional teams across time zones"
-    ],
-    products: [
-      { name: "Fluent Forms", logo: "https://fluentforms.com/wp-content/uploads/2021/05/fluentform-icon1.png", stats: "500K+ installs" },
-      { name: "FluentCRM", logo: "https://wishlistmember.com/wp-content/uploads/2021/08/fluentCRM.png", stats: "20K+ installs" },
-      { name: "Fluent Support", logo: "https://fluentsupport.com/wp-content/uploads/2023/09/Group-1000015260-1-1.png", stats: "10K+ installs" }
-    ],
-    icon: "https://wishlistnews.com/wp-content/uploads/2023/10/manage-ninja-logo.png"
+      "Collaborated across cross-functional teams globally"
+    ]
   },
   {
     company: "SJ Innovation LLC",
+    position: "Full-Stack Engineer",
     badge: "Past",
     duration: "2022 - 2023",
     location: "New York, USA",
@@ -129,280 +69,101 @@ const jobs = [
     responsibilities: [
       "Built MERN stack applications for enterprise clients",
       "Developed HIPAA-compliant EMR system with PHP",
-      "Integrated REST APIs improving data flow by 50%",
-      "Worked in agile teams across global time zones"
+      "Integrated REST APIs improving data flow by 50%"
     ]
   }
-];
+]
 </script>
 
 <style scoped>
-.gh-experience {
-  background: var(--gh-bg);
-  padding: 64px 32px;
-  border-top: 1px solid var(--gh-border-light);
+.experience { padding: 40px 20px; }
+
+.section-inner { max-width: 700px; }
+
+.term-line {
+  font-size: 0.88rem;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
 }
 
-.exp-container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
+.prompt { color: var(--accent-green); font-weight: 600; }
+.cmd { color: var(--accent-blue); }
 
-.section-title-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.section-title {
+  font-size: 1.1rem;
   margin-bottom: 12px;
 }
 
-.title-hash {
-  font-family: var(--gh-font-mono);
-  font-size: 1.5rem;
-  color: var(--gh-purple);
+.title-hash { color: var(--accent-purple); }
+
+.tl { display: flex; flex-direction: column; gap: 0; }
+
+.tl-item {
+  border: 2px solid var(--border-light);
+  padding: 14px;
+  margin-bottom: 12px;
 }
 
-.title-text {
-  font-family: var(--gh-font-mono);
-  font-size: 1.5rem;
+.tl-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+
+.tl-company { font-size: 1rem; font-weight: 700; }
+
+.tl-tag {
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--gh-text);
+  white-space: nowrap;
 }
 
-.title-line {
-  flex: 1;
-  height: 2px;
-  background: var(--gh-border-light);
-  margin-left: 16px;
-}
+.tag-curr { color: var(--accent-green); }
+.tag-past { color: var(--text-muted); }
 
-.section-desc {
-  font-size: 1rem;
-  color: var(--gh-text-muted);
-  margin-bottom: 32px;
-}
-
-.timeline {
-  position: relative;
-  padding-left: 24px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 6px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--gh-border-light);
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 32px;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -24px;
-  top: 0;
-  width: 14px;
-  height: 14px;
-  background: var(--gh-bg);
-  border: 3px solid var(--gh-link);
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.exp-card {
-  background: var(--gh-bg-secondary);
-  border: 1px solid var(--gh-border-light);
-  border-radius: 6px;
-  padding: 20px;
-  transition: all 0.2s ease;
-}
-
-.exp-card:hover {
-  border-color: var(--gh-border);
-}
-
-.card-header {
-  margin-bottom: 12px;
-}
-
-.company-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.tl-role {
+  font-size: 0.85rem;
+  color: var(--accent-blue);
   margin-bottom: 4px;
 }
 
-.company-icon {
-  color: var(--gh-text-muted);
+.tl-meta {
+  font-family: var(--font);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
 }
 
-.company-logo-img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  border-radius: 4px;
-}
-
-.company-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--gh-text);
-}
-
-.company-badge {
-  font-size: 0.7rem;
-  padding: 2px 8px;
-  background: var(--gh-green-light);
-  color: var(--gh-green-border);
-  border-radius: 10px;
-  font-family: var(--gh-font-mono);
-}
-
-.job-duration {
-  font-family: var(--gh-font-mono);
+.tl-desc {
   font-size: 0.85rem;
-  color: var(--gh-text-muted);
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.6;
 }
 
-.job-position {
-  font-size: 0.95rem;
-  color: var(--gh-link);
-  margin-bottom: 6px;
-}
-
-.job-location {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  color: var(--gh-text-muted);
-  margin-bottom: 12px;
-}
-
-.loc-icon {
-  display: flex;
-}
-
-.job-desc {
-  font-size: 0.9rem;
-  color: var(--gh-text-secondary);
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--gh-border-light);
-}
-
-.products-block {
-  margin-bottom: 16px;
-}
-
-.block-title {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--gh-text);
-  margin-bottom: 10px;
-}
-
-.title-icon {
-  color: var(--gh-text-muted);
-}
-
-.products-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.product-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: var(--gh-bg);
-  border: 1px solid var(--gh-border-light);
-  border-radius: 6px;
-}
-
-.prod-logo {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  border-radius: 4px;
-  background: white;
-}
-
-.prod-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.prod-name {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--gh-text);
-}
-
-.prod-stats {
-  font-family: var(--gh-font-mono);
-  font-size: 0.75rem;
-  color: var(--gh-text-muted);
-}
-
-.responsibilities-block {
-  padding-top: 16px;
-  border-top: 1px solid var(--gh-border-light);
-}
-
-.resp-list {
+.tl-list {
   list-style: none;
   padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 16px;
 }
 
-.resp-list li {
+.tl-list li {
   position: relative;
-  padding-left: 16px;
-  font-size: 0.85rem;
-  color: var(--gh-text-secondary);
+  padding-left: 14px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-.resp-list li::before {
-  content: '';
+.tl-list li::before {
+  content: '*';
   position: absolute;
   left: 0;
-  top: 8px;
-  width: 6px;
-  height: 6px;
-  background: var(--gh-green);
-  border-radius: 50%;
+  color: var(--accent-green);
 }
 
-@media (max-width: 768px) {
-  .resp-list {
-    grid-template-columns: 1fr;
-  }
-
-  .products-list {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 600px) {
-  .gh-experience {
-    padding: 48px 16px;
-  }
-
-  .exp-card {
-    padding: 16px;
-  }
+@media (min-width: 768px) {
+  .experience { padding: 48px 32px; }
 }
 </style>
