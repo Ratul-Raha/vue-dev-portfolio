@@ -26,6 +26,8 @@
 
           <p v-if="project.description" class="project-desc">{{ project.description }}</p>
 
+          <img v-if="project.image" :src="project.image" :alt="project.title" class="project-thumb" loading="lazy" />
+
           <div class="project-techs">
             <span
               v-for="(icon, idx) in project.icons"
@@ -70,6 +72,12 @@
 
 <script setup>
 import { ref, defineExpose } from "vue";
+import FluentCartImg from "../assets/images/projects/fluentcart.webp";
+import CalypsoImg from "../assets/images/projects/calystapro.jpg";
+import MarconiImg from "../assets/images/projects/marconi.png";
+import ConsultaImg from "../assets/images/projects/consulta.jpg";
+import EventickImg from "../assets/images/projects/eventick.png";
+import GeoThreadImg from "../assets/images/projects/geothread.jpg";
 
 const sectionRef = ref(null);
 defineExpose({ sectionRef });
@@ -81,52 +89,45 @@ const projects = [
     title: "Fluent Cart",
     year: "2023-25",
     description: "High-impact WordPress eCommerce plugin",
+    image: FluentCartImg,
     icons: [icon("vuedotjs", "4FC08D"), icon("laravel", "FA5555"), icon("wordpress", "21759B")],
     live: "https://fluentcart.com"
-  },
-  {
-    title: "Fun Feed Extension",
-    year: "2023-25",
-    description: "Chrome extension built with TypeScript",
-    icons: [icon("googlechrome", "4285F4"), icon("typescript", "3178C6")]
-  },
-  {
-    title: "Shopify Tag Generator",
-    year: "2023",
-    description: "Shopify app for auto-tagging products",
-    icons: [icon("shopify", "7AB55C"), icon("react", "61DAFB")]
-  },
-  {
-    title: "Zimbroom",
-    year: "2023",
-    description: "E-commerce platform built on Shopify",
-    icons: [icon("shopify", "7AB55C")],
-    live: "https://zimbroom.com"
   },
   {
     title: "CalypsoPro EMR",
     year: "2022",
     description: "HIPAA-compliant healthcare system",
+    image: CalypsoImg,
     icons: [icon("php", "777BB4"), icon("javascript", "F7DF1E")],
     live: "https://www.calystaproemr.com/"
   },
   {
-    title: "Social Media Manager",
-    year: "2022",
-    description: "Full-stack content management tool",
-    icons: [icon("react", "61DAFB"), icon("node", "339933")]
+    title: "Marconi",
+    year: "2025",
+    description: "AI customer support agent for WhatsApp and Telegram",
+    image: MarconiImg,
+    icons: [icon("python", "3776AB"), icon("openai", "412991"), icon("whatsapp", "25D366"), icon("telegram", "26A5E4")]
   },
   {
-    title: "POS System",
-    year: "2022",
-    description: "Inventory and sales management",
-    icons: [icon("react", "61DAFB"), icon("laravel", "FA5555")]
+    title: "Consulta",
+    year: "2025",
+    description: "AI-powered CRM for student consultancy services",
+    image: ConsultaImg,
+    icons: [icon("react", "61DAFB"), icon("nodedotjs", "339933"), icon("openai", "412991")]
   },
   {
-    title: "Tender Scheduler",
-    year: "2021",
-    description: "Project scheduling application",
-    icons: [icon("laravel", "FA5555"), icon("jquery", "0769AD")]
+    title: "Eventick",
+    year: "2025",
+    description: "Paymentless event booking and RSVP platform",
+    image: EventickImg,
+    icons: [icon("vuedotjs", "4FC08D"), icon("nodedotjs", "339933"), icon("tailwindcss", "06B6D4")]
+  },
+  {
+    title: "GeoThread",
+    year: "2025",
+    description: "On-demand print and framing service",
+    image: GeoThreadImg,
+    icons: [icon("laravel", "FA5555"), icon("vuedotjs", "4FC08D"), icon("mysql", "4479A1")]
   }
 ];
 </script>
@@ -231,6 +232,15 @@ const projects = [
   color: var(--gh-text-muted);
   margin-bottom: 12px;
   flex: 1;
+}
+
+.project-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  background: var(--gh-bg);
 }
 
 .project-techs {

@@ -41,6 +41,8 @@
 
             <p class="card-description">{{ project.description }}</p>
 
+            <img v-if="project.image" :src="project.image" :alt="project.title" class="project-thumb" loading="lazy" />
+
             <div class="card-features">
               <span v-for="feature in project.features.slice(0, 3)" :key="feature" class="feature-tag">
                 {{ feature }}
@@ -92,17 +94,24 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import FluentCartImg from "../assets/images/projects/fluentcart.webp";
+import CalypsoImg from "../assets/images/projects/calystapro.jpg";
+import MarconiImg from "../assets/images/projects/marconi.png";
+import ConsultaImg from "../assets/images/projects/consulta.jpg";
+import EventickImg from "../assets/images/projects/eventick.png";
+import GeoThreadImg from "../assets/images/projects/geothread.jpg";
 
 const typedText = ref('')
 const fullText = 'ls -la'
 const activeFilter = ref('All')
 
-const filters = ['All', 'Vue', 'React', 'Laravel', 'Shopify', 'WordPress', 'Node.js']
+const filters = ['All', 'Vue', 'React', 'Laravel', 'Shopify', 'WordPress', 'Node.js', 'Python']
 
 const projects = [
   {
     title: 'Fluent Cart',
     description: 'A modern e-commerce platform with real-time cart sync, multi-currency support, and advanced analytics.',
+    image: FluentCartImg,
     features: ['Real-time sync', 'Multi-currency', 'Analytics', 'REST API'],
     year: '2023-2025',
     live: 'https://fluentcart.com',
@@ -114,43 +123,9 @@ const projects = [
     ]
   },
   {
-    title: 'Fun Feed',
-    description: 'Chrome extension that curates your feed with intelligent filtering and content aggregation.',
-    features: ['AI Filtering', 'Auto-refresh', 'Export data'],
-    year: '2023-2025',
-    live: null,
-    github: '#',
-    techs: [
-      { name: 'Chrome', bg: '#4285F4', color: '#fff' },
-      { name: 'TypeScript', bg: '#3178C6', color: '#fff' }
-    ]
-  },
-  {
-    title: 'Tag Generator',
-    description: 'Shopify app for automated product tagging using AI-powered tag suggestions and bulk operations.',
-    features: ['AI tags', 'Bulk edit', 'SEO optimized'],
-    year: '2023',
-    live: null,
-    github: '#',
-    techs: [
-      { name: 'Shopify', bg: '#7AB55C', color: '#fff' },
-      { name: 'React', bg: '#61DAFB', color: '#000' }
-    ]
-  },
-  {
-    title: 'Zimbroom',
-    description: 'Full-featured e-commerce store with custom checkout flow and inventory management.',
-    features: ['Custom checkout', 'Inventory', 'Payment gateway'],
-    year: '2023',
-    live: 'https://zimbroom.com',
-    github: '#',
-    techs: [
-      { name: 'Shopify', bg: '#7AB55C', color: '#fff' }
-    ]
-  },
-  {
     title: 'CalystaPro EMR',
     description: 'Healthcare management system with patient records, appointment scheduling, and billing.',
+    image: CalypsoImg,
     features: ['Patient records', 'Scheduling', 'Billing', 'HIPAA compliant'],
     year: '2022',
     live: 'https://www.calystaproemr.com/',
@@ -161,39 +136,60 @@ const projects = [
     ]
   },
   {
-    title: 'SocialPilot',
-    description: 'Social media management tool for scheduling posts, analytics, and team collaboration.',
-    features: ['Scheduling', 'Analytics', 'Team management'],
-    year: '2022',
+    title: 'Marconi',
+    description: 'AI-powered customer support agent for WhatsApp and Telegram messaging platforms.',
+    image: MarconiImg,
+    features: ['WhatsApp integration', 'Telegram bot', 'AI responses', 'Ticket management'],
+    year: '2025',
+    live: null,
+    github: '#',
+    techs: [
+      { name: 'Python', bg: '#3776AB', color: '#fff' },
+      { name: 'OpenAI', bg: '#412991', color: '#fff' },
+      { name: 'WhatsApp', bg: '#25D366', color: '#fff' },
+      { name: 'Telegram', bg: '#26A5E4', color: '#fff' }
+    ]
+  },
+  {
+    title: 'Consulta',
+    description: 'AI-powered CRM platform for student consultancy with intelligent matching and application tracking.',
+    image: ConsultaImg,
+    features: ['Student profiling', 'AI recommendations', 'Application tracking', 'Communication hub'],
+    year: '2025',
     live: null,
     github: '#',
     techs: [
       { name: 'React', bg: '#61DAFB', color: '#000' },
-      { name: 'Node.js', bg: '#339933', color: '#fff' }
+      { name: 'Node.js', bg: '#339933', color: '#fff' },
+      { name: 'OpenAI', bg: '#412991', color: '#fff' }
     ]
   },
   {
-    title: 'POS System',
-    description: 'Point of sale with inventory tracking, barcode scanning, and sales reporting.',
-    features: ['Barcode scan', 'Reports', 'Multi-store'],
-    year: '2022',
+    title: 'Eventick',
+    description: 'Paymentless event booking platform with RSVP management and QR code check-in.',
+    image: EventickImg,
+    features: ['RSVP management', 'Event calendar', 'QR check-in', 'Guest list'],
+    year: '2025',
     live: null,
     github: '#',
     techs: [
-      { name: 'React', bg: '#61DAFB', color: '#000' },
-      { name: 'Laravel', bg: '#FA5555', color: '#fff' }
+      { name: 'Vue', bg: '#4FC08D', color: '#fff' },
+      { name: 'Node.js', bg: '#339933', color: '#fff' },
+      { name: 'Tailwind CSS', bg: '#06B6D4', color: '#fff' }
     ]
   },
   {
-    title: 'Tender Scheduler',
-    description: 'Project scheduling and task management system with team collaboration features.',
-    features: ['Gantt chart', 'Task dependencies', 'Notifications'],
-    year: '2021',
+    title: 'GeoThread',
+    description: 'On-demand print and framing service with custom design preview and order tracking.',
+    image: GeoThreadImg,
+    features: ['Custom framing', 'Print on demand', 'Order tracking', 'Design preview'],
+    year: '2025',
     live: null,
     github: '#',
     techs: [
       { name: 'Laravel', bg: '#FA5555', color: '#fff' },
-      { name: 'jQuery', bg: '#0769AD', color: '#fff' }
+      { name: 'Vue', bg: '#4FC08D', color: '#fff' },
+      { name: 'MySQL', bg: '#4479A1', color: '#fff' }
     ]
   }
 ]
@@ -354,6 +350,15 @@ onMounted(() => {
   color: #8b949e;
   line-height: 1.6;
   margin-bottom: 16px;
+}
+
+.project-thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  background: #1f2937;
 }
 
 .card-features {
