@@ -12,13 +12,6 @@
         <hr class="section-hr" />
         <section id="projectsSection"><ProjectsSection /></section>
         <hr class="section-hr" />
-        <section id="contactSection"><ContactSection /></section>
-        <hr class="section-hr" />
-        <footer class="footer">
-          <p class="footer-text">
-            crafted by Goutom Dash &mdash; 2023-2025
-          </p>
-        </footer>
       </div>
       <div class="home-sidebar">
         <SideMenu :active-section="activeSection" @navigate="scrollToSection" />
@@ -33,7 +26,6 @@ import HeroSection from "../components/HeroSection.vue";
 import AboutSection from "../components/AboutSection.vue";
 import ServicesSection from "../components/ServicesSection.vue";
 import ProjectsSection from "../components/ProjectsSection.vue";
-import ContactSection from "../components/ContactSection.vue";
 import WorkExperience from "../components/WorkExperience.vue";
 import SideMenu from "../components/SideMenu.vue";
 
@@ -45,7 +37,7 @@ function scrollToSection(id) {
 }
 
 function handleScroll() {
-  const ids = ["homeSection","aboutSection","servicesSection","experienceSection","projectsSection","contactSection"];
+  const ids = ["homeSection","aboutSection","servicesSection","experienceSection","projectsSection"];
   for (let i = ids.length - 1; i >= 0; i--) {
     const el = document.getElementById(ids[i]);
     if (el && el.getBoundingClientRect().top <= 100) {
