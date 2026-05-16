@@ -5,10 +5,17 @@
         <pre class="ascii-art">
   +==================================+
   |   GOUTOM DASH                    |
-  |   Founder &amp; AI Engineer         |
+  |   Founding Engineer, Marconi AI  |
   |   Architect · Builder · Hacker   |
   +==================================+</pre>
       </div>
+
+      <p class="hero-bio">
+        I build software. Currently at <a href="https://marconi.madstackbd.com" target="_blank">Marconi AI</a>.
+        Previously at <a href="https://wpmanageninja.com" target="_blank">WPManageNinja</a>
+        and <a href="https://sjinnovation.com" target="_blank">SJ Innovation</a>.
+        Five years in. Still figuring it out.
+      </p>
 
       <div class="hero-actions">
         <a href="#projectsSection" class="action-btn">
@@ -125,6 +132,15 @@ const techs = [
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.hero-bio {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.hero-bio a {
+  color: var(--accent-blue);
 }
 
 .action-btn {
