@@ -169,7 +169,7 @@ const filteredProjects = computed(() => {
 .term-line {
   font-size: 0.88rem;
   margin-bottom: 6px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .prompt { color: var(--accent-green); font-weight: 600; }

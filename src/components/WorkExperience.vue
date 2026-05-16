@@ -1,22 +1,36 @@
 <template>
   <section ref="sectionRef" class="experience reveal">
     <div class="section-inner">
-      <h2 class="section-title"><span class="title-hash">#</span> experience</h2>
+      <h2 class="section-title">
+        <span class="title-hash">#</span>
+        <span class="title-text">experience</span>
+      </h2>
 
-      <div class="term-line"><span class="prompt">$</span> <span class="cmd">cat</span> ~/career.log</div>
+      <div class="term-line">
+        <span class="prompt">$</span>
+        <span class="cmd">cat</span> ~/career.log
+      </div>
 
-      <div class="tl reveal-stagger">
+      <div class="timeline reveal-stagger">
         <div v-for="(job, i) in jobs" :key="i" class="tl-item">
-          <div class="tl-head">
-            <h3 class="tl-company">{{ job.company }}</h3>
-            <span class="tl-tag" :class="job.badge === 'Current' ? 'tag-curr' : 'tag-past'">[{{ job.badge }}]</span>
+          <div class="tl-marker">
+            <span class="tl-dot" :class="job.badge === 'Current' ? 'dot-active' : 'dot-past'"></span>
+            <span class="tl-line" v-if="i < jobs.length - 1"></span>
           </div>
-          <div class="tl-role">{{ job.position }}</div>
-          <div class="tl-meta">{{ job.duration }} &mdash; {{ job.location }}</div>
-          <p class="tl-desc">{{ job.description }}</p>
-          <ul class="tl-list">
-            <li v-for="r in job.responsibilities" :key="r">{{ r }}</li>
-          </ul>
+          <div class="tl-content">
+            <div class="tl-head">
+              <h3 class="tl-company">{{ job.company }}</h3>
+              <span class="tl-badge" :class="job.badge === 'Current' ? 'badge-current' : 'badge-past'">
+                [{{ job.badge }}]
+              </span>
+            </div>
+            <div class="tl-role">{{ job.position }}</div>
+            <div class="tl-meta">{{ job.duration }} — {{ job.location }}</div>
+            <p class="tl-desc">{{ job.description }}</p>
+            <ul class="tl-list">
+              <li v-for="r in job.responsibilities" :key="r">{{ r }}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -76,31 +90,90 @@ const jobs = [
 </script>
 
 <style scoped>
-.experience { padding: 40px 20px; }
+.experience {
+  padding: 40px 20px;
+}
 
-.section-inner { max-width: 700px; }
+.section-inner {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-hash {
+  color: var(--accent-purple);
+  font-size: 1.2rem;
+}
+
+.title-text {
+  color: var(--text);
+  font-weight: 700;
+}
 
 .term-line {
   font-size: 0.88rem;
-  margin-bottom: 10px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .prompt { color: var(--accent-green); font-weight: 600; }
 .cmd { color: var(--accent-blue); }
 
-.section-title {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.title-hash { color: var(--accent-purple); }
-
-.tl { display: flex; flex-direction: column; gap: 0; }
-
 .tl-item {
+  display: flex;
+  gap: 16px;
+}
+
+.tl-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.tl-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.dot-active {
+  background: var(--accent-green);
+}
+
+.dot-past {
+  background: var(--border-light);
+}
+
+.tl-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border-light);
+  margin: 4px 0;
+}
+
+.tl-content {
+  flex: 1;
   border: 2px solid var(--border-light);
-  padding: 14px;
+  background: var(--bg-alt);
+  padding: 12px 14px;
   margin-bottom: 12px;
 }
 
@@ -112,16 +185,19 @@ const jobs = [
   margin-bottom: 2px;
 }
 
-.tl-company { font-size: 1rem; font-weight: 700; }
+.tl-company {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
 
-.tl-tag {
-  font-size: 0.75rem;
+.tl-badge {
+  font-size: 0.72rem;
   font-weight: 600;
   white-space: nowrap;
 }
 
-.tag-curr { color: var(--accent-green); }
-.tag-past { color: var(--text-muted); }
+.badge-current { color: var(--accent-green); }
+.badge-past { color: var(--text-muted); }
 
 .tl-role {
   font-size: 0.85rem;
@@ -130,8 +206,7 @@ const jobs = [
 }
 
 .tl-meta {
-  font-family: var(--font);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   margin-bottom: 8px;
 }
@@ -164,6 +239,8 @@ const jobs = [
 }
 
 @media (min-width: 768px) {
-  .experience { padding: 48px 32px; }
+  .experience {
+    padding: 48px 0;
+  }
 }
 </style>

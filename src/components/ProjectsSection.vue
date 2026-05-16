@@ -1,9 +1,15 @@
 <template>
   <section ref="sectionRef" class="projects-section reveal">
     <div class="section-inner">
-      <h2 class="section-title"><span class="title-hash">#</span> projects</h2>
+      <h2 class="section-title">
+        <span class="title-hash">#</span>
+        <span class="title-text">projects</span>
+      </h2>
 
-      <div class="term-line"><span class="prompt">$</span> <span class="cmd">ls</span> ~/projects/</div>
+      <div class="term-line">
+        <span class="prompt">$</span>
+        <span class="cmd">ls</span> ~/projects/
+      </div>
 
       <div class="proj-grid reveal-stagger">
         <div v-for="p in projects" :key="p.title" class="proj-card">
@@ -16,21 +22,27 @@
               <span class="proj-year">({{ p.year }})</span>
             </div>
             <p class="proj-desc">{{ p.description }}</p>
-            <div class="proj-icons">
-              <span v-for="(ic, i) in p.icons" :key="i" class="proj-icon">
+            <div class="proj-techs">
+              <span v-for="(ic, i) in p.icons" :key="i" class="proj-tech-icon">
                 <img :src="ic" />
               </span>
             </div>
             <div class="proj-links">
-              <a v-if="p.live" :href="p.live" target="_blank">[live]</a>
-              <a v-if="p.github && p.github !== '#'" :href="p.github" target="_blank">[code]</a>
+              <a v-if="p.live" :href="p.live" target="_blank">
+                <span class="link-bracket">[</span> live <span class="link-bracket">]</span>
+              </a>
+              <a v-if="p.github && p.github !== '#'" :href="p.github" target="_blank">
+                <span class="link-bracket">[</span> code <span class="link-bracket">]</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
 
       <div class="section-cta">
-        <router-link to="/projects">[ View all projects &rarr; ]</router-link>
+        <router-link to="/projects" class="cta-link">
+          <span class="cta-bracket">[</span> view all projects → <span class="cta-bracket">]</span>
+        </router-link>
       </div>
     </div>
   </section>
@@ -94,44 +106,81 @@ const projects = [
 </script>
 
 <style scoped>
-.projects-section { padding: 40px 20px; background: var(--bg-alt); }
+.projects-section {
+  padding: 40px 20px;
+  background: var(--bg-alt);
+}
 
-.section-inner { max-width: 700px; }
+.section-inner {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-hash {
+  color: var(--accent-green);
+  font-size: 1.2rem;
+}
+
+.title-text {
+  color: var(--text);
+  font-weight: 700;
+}
 
 .term-line {
   font-size: 0.88rem;
-  margin-bottom: 10px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .prompt { color: var(--accent-green); font-weight: 600; }
 .cmd { color: var(--accent-blue); }
 
-.section-title {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
-
-.title-hash { color: var(--accent-green); }
-
-.proj-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
 
 .proj-card {
   display: flex;
   flex-direction: column;
   border: 2px solid var(--border-light);
+  background: var(--bg);
+  transition: border-color 0.2s;
+}
+.proj-card:hover {
+  border-color: var(--border);
 }
 
 .proj-img {
+  position: relative;
   width: 100%;
   height: 140px;
   overflow: hidden;
   background: var(--bg);
   border-bottom: 2px solid var(--border-light);
 }
-.proj-img img { width: 100%; height: 100%; object-fit: cover; }
 
-.proj-body { padding: 12px; display: flex; flex-direction: column; flex: 1; }
+.proj-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proj-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
 .proj-head {
   display: flex;
@@ -141,9 +190,15 @@ const projects = [
   margin-bottom: 4px;
 }
 
-.proj-title { font-size: 0.92rem; font-weight: 700; }
+.proj-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
 
-.proj-year { font-size: 0.78rem; color: var(--text-muted); }
+.proj-year {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
 
 .proj-desc {
   font-size: 0.82rem;
@@ -153,18 +208,18 @@ const projects = [
   flex: 1;
 }
 
-.proj-icons {
+.proj-techs {
   display: flex;
   gap: 6px;
   margin-bottom: 8px;
 }
 
-.proj-icon {
+.proj-tech-icon {
   width: 18px;
   height: 18px;
   display: flex;
 }
-.proj-icon img { width: 100%; height: 100%; object-fit: contain; }
+.proj-tech-icon img { width: 100%; height: 100%; object-fit: contain; }
 
 .proj-links {
   display: flex;
@@ -178,10 +233,35 @@ const projects = [
   text-decoration: underline;
 }
 
-.section-cta { text-align: center; }
-.section-cta a { font-size: 0.9rem; }
+.link-bracket {
+  color: var(--accent-green);
+}
 
-@media (min-width: 600px) { .proj-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 768px) { .projects-section { padding: 48px 32px; } }
-@media (min-width: 1024px) { .proj-grid { grid-template-columns: repeat(3, 1fr); } }
+.section-cta {
+  text-align: center;
+}
+
+.cta-link {
+  font-size: 0.9rem;
+  color: var(--accent-blue);
+  text-decoration: underline;
+}
+.cta-link:hover {
+  color: var(--accent);
+}
+
+.cta-bracket {
+  color: var(--accent-green);
+}
+
+@media (min-width: 600px) {
+  .proj-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .projects-section {
+    padding: 48px 0;
+  }
+}
 </style>

@@ -27,17 +27,17 @@ import BootSequence from './components/BootSequence.vue'
 :root {
   --bg: #ffffff;
   --bg-alt: #f5f5f5;
+  --bg-card: #fafafa;
   --text: #1a1a1a;
   --text-secondary: #555555;
   --text-muted: #888888;
-  --border: #999999;
+  --border: #333333;
   --border-light: #cccccc;
-  --link: #0000cc;
-  --link-hover: #cc0000;
   --accent: #cc0000;
   --accent-blue: #0000cc;
   --accent-green: #006600;
   --accent-purple: #660099;
+  --accent-amber: #996600;
   --font: 'IBM Plex Mono', 'Courier New', monospace;
 }
 
@@ -54,26 +54,40 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
 a {
-  color: var(--link);
+  color: var(--accent-blue);
   text-decoration: underline;
 }
-a:hover { color: var(--link-hover); }
+a:hover {
+  color: var(--accent);
+}
 
 h1, h2, h3, h4 {
   font-weight: 700;
   color: var(--text);
 }
 
-.page-enter-active, .page-leave-active { transition: opacity 0.15s; }
-.page-enter-from, .page-leave-to { opacity: 0; }
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.15s;
+}
+.page-enter-from, .page-leave-to {
+  opacity: 0;
+}
 
 .reveal {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
-.reveal.revealed { opacity: 1; transform: translateY(0); }
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .reveal-stagger > * {
   opacity: 0;
@@ -81,7 +95,10 @@ h1, h2, h3, h4 {
   transition: opacity 0.3s ease, transform 0.3s ease;
   transition-delay: var(--reveal-delay, 0ms);
 }
-.reveal-stagger > *.revealed { opacity: 1; transform: translateY(0); }
+.reveal-stagger > *.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #f0f0f0; }

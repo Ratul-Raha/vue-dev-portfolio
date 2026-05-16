@@ -1,15 +1,25 @@
 <template>
-  <section ref="sectionRef" class="tech reveal">
+  <section ref="sectionRef" class="services reveal">
     <div class="section-inner">
-      <h2 class="section-title"><span class="title-hash">#</span> tech-stack</h2>
+      <h2 class="section-title">
+        <span class="title-hash">#</span>
+        <span class="title-text">tech-stack</span>
+      </h2>
 
-      <div class="term-line"><span class="prompt">$</span> <span class="cmd">ls</span> ~/skills/</div>
+      <div class="term-line">
+        <span class="prompt">$</span>
+        <span class="cmd">ls</span> ~/skills/
+      </div>
 
-      <div class="tech-grid reveal-stagger">
-        <div v-for="cat in categories" :key="cat.name" class="tech-cat">
-          <h3 class="tc-title">{{ cat.name }}</h3>
-          <div class="tc-items">
-            <span v-for="t in cat.items" :key="t.name" class="tc-item">{{ t.name }}</span>
+      <div class="skills-grid reveal-stagger">
+        <div v-for="cat in categories" :key="cat.name" class="skill-cat">
+          <div class="sc-head">
+            <span class="sc-bracket">[</span>
+            {{ cat.name }}
+            <span class="sc-bracket">]</span>
+          </div>
+          <div class="sc-items">
+            <span v-for="t in cat.items" :key="t.name" class="sc-item">{{ t.name }}</span>
           </div>
         </div>
       </div>
@@ -27,70 +37,107 @@ useScrollReveal(sectionRef, 60)
 const categories = [
   {
     name: "Frontend",
-    items: [{ name: "Vue.js" }, { name: "React" }, { name: "TypeScript" }]
+    items: [{ name: "Vue.js" }, { name: "React" }, { name: "TypeScript" }, { name: "Tailwind" }]
   },
   {
     name: "Backend",
-    items: [{ name: "Node.js" }, { name: "Laravel" }, { name: "Python" }]
+    items: [{ name: "Node.js" }, { name: "Laravel" }, { name: "Python" }, { name: "PHP" }]
   },
   {
     name: "AI & Data",
-    items: [{ name: "OpenAI" }, { name: "n8n" }, { name: "MySQL" }]
+    items: [{ name: "OpenAI" }, { name: "n8n" }, { name: "LangChain" }, { name: "MySQL" }]
   },
   {
     name: "Tools",
-    items: [{ name: "Git" }, { name: "Docker" }, { name: "Figma" }]
+    items: [{ name: "Git" }, { name: "Docker" }, { name: "Figma" }, { name: "Linux" }]
   }
 ]
 </script>
 
 <style scoped>
-.tech { padding: 40px 20px; background: var(--bg-alt); }
+.services {
+  padding: 40px 20px;
+  background: var(--bg-alt);
+}
 
-.section-inner { max-width: 700px; }
+.section-inner {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-hash {
+  color: var(--accent-blue);
+  font-size: 1.2rem;
+}
+
+.title-text {
+  color: var(--text);
+  font-weight: 700;
+}
 
 .term-line {
   font-size: 0.88rem;
-  margin-bottom: 10px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .prompt { color: var(--accent-green); font-weight: 600; }
 .cmd { color: var(--accent-blue); }
 
-.section-title {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-}
-
-.title-hash { color: var(--accent-blue); }
-
-.tech-grid {
+.skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
-.tech-cat {
+.skill-cat {
   border: 2px solid var(--border);
   padding: 12px;
+  background: var(--bg);
 }
 
-.tc-title {
-  font-size: 0.82rem;
+.sc-head {
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 1px;
   color: var(--text-muted);
   margin-bottom: 8px;
-  letter-spacing: 1px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-light);
 }
 
-.tc-items { display: flex; flex-direction: column; gap: 4px; }
+.sc-bracket {
+  color: var(--accent);
+}
 
-.tc-item { font-size: 0.9rem; }
+.sc-items {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sc-item {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding: 2px 0;
+}
 
 @media (min-width: 768px) {
-  .tech { padding: 48px 32px; }
-  .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .services {
+    padding: 48px 0;
+  }
+  .skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
 }
 </style>

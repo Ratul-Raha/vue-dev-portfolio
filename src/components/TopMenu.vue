@@ -1,10 +1,16 @@
 <template>
   <nav class="topnav">
     <div class="nav-inner">
-      <router-link to="/" class="nav-brand">Goutom Dash</router-link>
+      <router-link to="/" class="nav-brand">
+        <span class="brand-prompt">></span>
+        <span class="brand-name">goutom</span>
+        <span class="brand-sep">@</span>
+        <span class="brand-host">portfolio</span>
+        <span class="brand-path">:~$</span>
+      </router-link>
       <div class="nav-links">
-        <router-link to="/" class="nav-link">[ Home ]</router-link>
-        <router-link to="/projects" class="nav-link">[ Projects ]</router-link>
+        <router-link to="/" class="nav-link" exact-active-class="link-active">[ home ]</router-link>
+        <router-link to="/projects" class="nav-link" exact-active-class="link-active">[ projects ]</router-link>
       </div>
     </div>
   </nav>
@@ -33,24 +39,41 @@
 }
 
 .nav-brand {
-  font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--text);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
-.nav-brand:hover { text-decoration: underline; }
+.nav-brand:hover {
+  text-decoration: underline;
+  color: var(--text);
+}
 
-.nav-links { display: flex; gap: 4px; }
+.brand-prompt { color: var(--accent-green); margin-right: 4px; }
+.brand-name { color: var(--accent-amber); font-weight: 600; }
+.brand-sep { color: var(--text-muted); }
+.brand-host { color: var(--accent-blue); font-weight: 600; }
+.brand-path { color: var(--text-muted); margin-left: 2px; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 .nav-link {
-  padding: 4px 8px;
-  font-size: 0.85rem;
-  color: var(--link);
+  font-size: 0.82rem;
+  color: var(--accent-blue);
   text-decoration: underline;
+  padding: 4px 8px;
 }
-.nav-link:hover { color: var(--link-hover); }
+.nav-link:hover {
+  color: var(--accent);
+}
 
-.router-link-exact-active {
+.link-active {
   color: var(--accent);
   font-weight: 600;
 }
