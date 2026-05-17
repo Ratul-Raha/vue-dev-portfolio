@@ -108,6 +108,9 @@ const menuOpen = ref(false)
 }
 
 @media (max-width: 768px) {
+  .topnav {
+    min-height: 48px;
+  }
   .nav-inner {
     flex-wrap: wrap;
   }
@@ -115,13 +118,13 @@ const menuOpen = ref(false)
   .nav-brand {
     border-right: none;
     flex: 1;
-    padding: 10px 16px;
-    font-size: 1.2rem;
+    padding: 8px 12px;
+    font-size: 1.1rem;
   }
 
   .nav-toggle {
     display: block;
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
   .nav-links {
@@ -139,7 +142,7 @@ const menuOpen = ref(false)
     width: 100%;
     border-left: none;
     border-bottom: 2px solid var(--border);
-    padding: 14px 16px;
+    padding: 12px;
     font-size: 0.85rem;
   }
   

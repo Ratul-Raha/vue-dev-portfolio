@@ -124,8 +124,9 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
     flex-direction: column;
     gap: 8px;
     text-align: center;
-    padding: 16px 20px;
+    padding: 16px;
     font-size: 0.75rem;
+    max-width: 100%;
   }
 }
 </style>

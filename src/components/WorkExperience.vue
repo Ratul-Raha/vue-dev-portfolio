@@ -211,13 +211,20 @@ const jobs = [
 
 @media (max-width: 600px) {
   .experience {
-    padding: 40px 0;
+    padding: 40px 16px;
   }
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .tl-content {
     padding: 16px;
+  }
+  .tl-content::before {
+    left: -8px;
+    width: 8px;
+  }
+  .tl-item {
+    padding-left: 8px;
   }
   .tl-head {
     flex-direction: column;

@@ -200,7 +200,7 @@ useScrollReveal(heroRef)
 
 @media (max-width: 600px) {
   .hero {
-    padding: 60px 0 40px;
+    padding: 40px 16px 40px;
   }
   .hero-title-row {
     flex-direction: column;
@@ -216,16 +216,16 @@ useScrollReveal(heroRef)
     height: 6px;
   }
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .lead-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .hero-bio {
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
   }
   .hero-actions {
@@ -238,7 +238,7 @@ useScrollReveal(heroRef)
     font-size: 0.85rem;
   }
   .inc-badge {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     padding: 1px 6px;
   }
 }

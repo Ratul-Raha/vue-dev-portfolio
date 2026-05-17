@@ -138,6 +138,13 @@ useScrollReveal(sectionRef)
   white-space: nowrap;
 }
 
+@media (max-width: 400px) {
+  .detail-value {
+    white-space: normal;
+    word-break: break-all;
+  }
+}
+
 @media (min-width: 768px) {
   .contact {
     padding-left: 0;
@@ -150,13 +157,13 @@ useScrollReveal(sectionRef)
 
 @media (max-width: 600px) {
   .contact {
-    padding: 24px 0 32px;
+    padding: 24px 16px 32px;
   }
   .contact-card {
     padding: 16px;
   }
   .section-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   .contact-subtitle {
     font-size: 0.85rem;

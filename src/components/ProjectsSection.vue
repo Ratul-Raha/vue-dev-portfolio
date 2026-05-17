@@ -269,10 +269,10 @@ const projects = [
 
 @media (max-width: 600px) {
   .projects-section {
-    padding: 40px 0;
+    padding: 40px 16px;
   }
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .proj-img {
     height: 140px;

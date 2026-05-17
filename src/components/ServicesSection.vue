@@ -91,10 +91,10 @@ useScrollReveal(sectionRef, 60)
 
 @media (max-width: 600px) {
   .services {
-    padding: 40px 0;
+    padding: 40px 16px;
   }
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .expertise-block {
     padding: 16px;

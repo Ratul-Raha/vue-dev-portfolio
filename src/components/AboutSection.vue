@@ -200,31 +200,34 @@ useScrollReveal(sectionRef)
 
 @media (max-width: 600px) {
   .about {
-    padding: 40px 0;
+    padding: 40px 16px;
   }
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .lead-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .about-text-col p:not(.lead-text) {
     font-size: 0.9rem;
   }
+  .fortune-block {
+    padding: 12px;
+  }
   .fortune-text {
-    font-size: 0.95rem;
-  }
-  .fortune-attrib {
-    font-size: 0.8rem;
-  }
-  .expertise-section h3 {
     font-size: 0.9rem;
   }
+  .fortune-attrib {
+    font-size: 0.75rem;
+  }
+  .expertise-section h3 {
+    font-size: 0.85rem;
+  }
   .ecard {
-    padding: 16px;
+    padding: 14px;
   }
   .ecard h4 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .ecard p {
     font-size: 0.85rem;
