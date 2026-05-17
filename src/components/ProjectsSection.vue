@@ -97,7 +97,7 @@ const projects = [
 
 <style scoped>
 .projects-section {
-  padding: 60px 16px;
+  padding: 80px 0 40px;
   border-top: 4px solid var(--border);
 }
 
@@ -258,10 +258,6 @@ const projects = [
 }
 
 @media (min-width: 768px) {
-  .projects-section {
-    padding-left: 0;
-    padding-right: 0;
-  }
   .proj-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -269,10 +265,10 @@ const projects = [
 
 @media (max-width: 600px) {
   .projects-section {
-    padding: 40px 16px;
+    padding: 32px 16px;
   }
   .section-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .proj-img {
     height: 140px;

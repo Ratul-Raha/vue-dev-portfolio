@@ -42,7 +42,7 @@ useScrollReveal(heroRef)
 
 <style scoped>
 .hero {
-  padding: 40px 16px 60px;
+  padding: 80px 0 60px;
 }
 
 .hero-container {
@@ -190,88 +190,79 @@ useScrollReveal(heroRef)
   color: #ffffff;
 }
 
-@media (min-width: 768px) {
-  .hero {
-    padding: 60px 0 60px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
+/* Removed min-width 768px padding rule as it's no longer needed */
 
-@media (max-width: 600px) {
+  @media (max-width: 600px) {
   .hero {
-    padding: 32px 16px 28px;
+    padding: 32px 16px 24px;
   }
   .hero-container {
-    gap: 20px;
+    gap: 16px;
   }
   .hero-header {
-    padding-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom-width: 2px;
   }
   .hero-title-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 4px;
   }
   .hire-badge {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     padding: 3px 8px;
-  }
-  .hire-dot {
-    width: 5px;
-    height: 5px;
   }
   .hero-title {
     font-size: 1.75rem;
+    margin-bottom: 0;
   }
   .hero-subtitle {
     font-size: 0.85rem;
   }
   .hero-bio {
-    gap: 12px;
+    gap: 10px;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
   .lead-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
   .hero-bio p:not(.lead-text) {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
   .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 12px;
+    flex-direction: row;
+    gap: 4px;
+    margin-top: 8px;
   }
   .action-btn {
     padding: 0;
     border: none;
     background: none;
-    font-family: var(--font);
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.9rem;
     text-transform: none;
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
     color: var(--text);
-    transition: color 0.15s;
   }
   .action-btn:hover {
     background: none;
-    color: var(--accent);
+    color: var(--text-muted);
   }
   .whatsapp-btn {
     background: none;
-    color: #25D366;
-    border: none;
+    border-color: transparent;
+    color: var(--text);
   }
   .whatsapp-btn:hover {
     background: none;
-    color: #128C7E;
+    border-color: transparent;
+    color: var(--text-muted);
   }
   .inc-badge {
-    font-size: 0.65rem;
-    padding: 1px 5px;
+    font-size: 0.75rem;
   }
 }
 </style>

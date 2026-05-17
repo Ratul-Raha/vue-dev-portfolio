@@ -49,7 +49,7 @@ useScrollReveal(sectionRef)
 
 <style scoped>
 .contact {
-  padding: 32px 16px 40px;
+  padding: 80px 0 100px;
   border-top: 4px solid var(--border);
 }
 
@@ -142,6 +142,20 @@ useScrollReveal(sectionRef)
   .detail-value {
     white-space: normal;
     word-break: break-all;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 40px 0 60px;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+  .ci-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 

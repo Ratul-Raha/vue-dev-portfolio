@@ -43,7 +43,7 @@ useScrollReveal(sectionRef)
 
 <style scoped>
 .github-stats {
-  padding: 60px 0;
+  padding: 80px 0 40px;
   border-top: 4px solid var(--border);
 }
 
@@ -138,6 +138,15 @@ useScrollReveal(sectionRef)
 @media (max-width: 768px) {
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .github-stats {
+    padding: 40px 0;
+  }
+  .section-title {
+    font-size: 2rem;
   }
 }
 </style>

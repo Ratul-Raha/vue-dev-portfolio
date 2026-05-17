@@ -30,7 +30,7 @@ useScrollReveal(sectionRef, 60)
 
 <style scoped>
 .services {
-  padding: 60px 16px;
+  padding: 80px 0 40px;
   border-top: 4px solid var(--border);
 }
 
@@ -85,13 +85,13 @@ useScrollReveal(sectionRef, 60)
     padding: 20px;
   }
   .expertise-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 600px) {
   .services {
-    padding: 40px 16px;
+    padding: 32px 16px;
   }
   .section-title {
     font-size: 1.5rem;

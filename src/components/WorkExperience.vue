@@ -81,7 +81,7 @@ const jobs = [
 
 <style scoped>
 .experience {
-  padding: 60px 16px;
+  padding: 80px 0 40px;
   border-top: 4px solid var(--border);
 }
 
@@ -91,6 +91,7 @@ const jobs = [
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding: 0 16px;
 }
 
 .section-header {
@@ -211,10 +212,10 @@ const jobs = [
 
 @media (max-width: 600px) {
   .experience {
-    padding: 40px 16px;
+    padding: 32px 16px;
   }
   .section-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .tl-content {
     padding: 16px;

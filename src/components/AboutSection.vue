@@ -60,7 +60,7 @@ useScrollReveal(sectionRef)
 
 <style scoped>
 .about {
-  padding: 60px 16px;
+  padding: 80px 0 40px;
   border-top: 4px solid var(--border);
 }
 
@@ -182,12 +182,7 @@ useScrollReveal(sectionRef)
   line-height: 1.5;
 }
 
-@media (min-width: 768px) {
-  .about {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
+/* Removed min-width 768px padding rule as it's no longer needed */
 
 @media (max-width: 900px) {
   .about-grid {
@@ -200,16 +195,16 @@ useScrollReveal(sectionRef)
 
 @media (max-width: 600px) {
   .about {
-    padding: 40px 16px;
+    padding: 32px 16px;
   }
   .section-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .lead-text {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
   }
   .about-text-col p:not(.lead-text) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   .fortune-block {
     padding: 12px;
