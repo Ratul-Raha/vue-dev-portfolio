@@ -156,14 +156,13 @@ const filteredProjects = computed(() => {
 <style scoped>
 .projects-page {
   min-height: 100vh;
-  padding-top: 48px;
-  background: var(--bg);
+  padding-top: 52px;
 }
 
 .page-inner {
   max-width: 700px;
   margin: 0 auto;
-  padding: 32px 20px 48px;
+  padding: 24px 16px 48px;
 }
 
 .term-line {
@@ -275,6 +274,27 @@ const filteredProjects = computed(() => {
 .back-link a { font-size: 0.9rem; }
 
 @media (min-width: 600px) { .proj-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 768px) { .page-inner { padding: 48px 32px 64px; } }
+@media (min-width: 768px) { .page-inner { padding: 32px 24px 48px; } }
 @media (min-width: 1024px) { .proj-grid { grid-template-columns: repeat(3, 1fr); } }
+
+@media (max-width: 600px) {
+  .page-inner {
+    padding: 16px 12px 32px;
+  }
+  .page-title {
+    font-size: 1.25rem;
+  }
+  .proj-img {
+    height: 120px;
+  }
+  .proj-body {
+    padding: 10px;
+  }
+  .proj-title {
+    font-size: 0.85rem;
+  }
+  .proj-desc {
+    font-size: 0.78rem;
+  }
+}
 </style>

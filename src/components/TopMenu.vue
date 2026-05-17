@@ -10,7 +10,7 @@
       <div class="nav-links" :class="{ open: menuOpen }">
         <router-link to="/" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">Home</router-link>
         <router-link to="/projects" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">Projects</router-link>
-        <router-link to="/about" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">About</router-link>
+        <router-link to="/story" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">My Story</router-link>
       </div>
     </div>
   </nav>
@@ -30,6 +30,7 @@ const menuOpen = ref(false)
   background: var(--bg);
   border-bottom: 2px solid var(--border);
   z-index: 100;
+  min-height: 52px;
 }
 
 .nav-inner {
@@ -114,10 +115,13 @@ const menuOpen = ref(false)
   .nav-brand {
     border-right: none;
     flex: 1;
+    padding: 10px 16px;
+    font-size: 1.2rem;
   }
 
   .nav-toggle {
     display: block;
+    padding: 0 16px;
   }
 
   .nav-links {
@@ -135,6 +139,8 @@ const menuOpen = ref(false)
     width: 100%;
     border-left: none;
     border-bottom: 2px solid var(--border);
+    padding: 14px 16px;
+    font-size: 0.85rem;
   }
   
   .nav-link:last-child {

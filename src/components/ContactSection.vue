@@ -1,23 +1,39 @@
 <template>
   <section ref="sectionRef" class="contact reveal">
     <div class="section-inner">
-      <div class="section-header">
-        <h2 class="section-title">Contact</h2>
-      </div>
-
-      <div class="contact-info">
-        <a href="mailto:gkdratul@gmail.com" class="ci-block">
-          <span class="ci-key">Email</span>
-          <span class="ci-val">gkdratul@gmail.com</span>
-        </a>
-        <a href="https://github.com/Ratul-Raha" target="_blank" class="ci-block">
-          <span class="ci-key">GitHub</span>
-          <span class="ci-val">github.com/Ratul-Raha</span>
-        </a>
-        <a href="https://www.linkedin.com/in/goutom-dash-7b48471b9/" target="_blank" class="ci-block">
-          <span class="ci-key">LinkedIn</span>
-          <span class="ci-val">linkedin.com/in/goutom-dash</span>
-        </a>
+      <div class="contact-card">
+        <h2 class="section-title">Let's work together</h2>
+        <p class="contact-subtitle">Have a project in mind? Reach out.</p>
+        <div class="contact-grid">
+          <a href="mailto:gkdratul@gmail.com" class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div class="contact-detail">
+              <span class="detail-label">Email</span>
+              <span class="detail-value">gkdratul@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://wa.me/8801684566828" target="_blank" class="contact-item whatsapp">
+            <div class="contact-icon">💬</div>
+            <div class="contact-detail">
+              <span class="detail-label">WhatsApp</span>
+              <span class="detail-value">+8801684566828</span>
+            </div>
+          </a>
+          <a href="https://github.com/Ratul-Raha" target="_blank" class="contact-item">
+            <div class="contact-icon">⌨</div>
+            <div class="contact-detail">
+              <span class="detail-label">GitHub</span>
+              <span class="detail-value">Ratul-Raha</span>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/goutom-dash-7b48471b9/" target="_blank" class="contact-item">
+            <div class="contact-icon">in</div>
+            <div class="contact-detail">
+              <span class="detail-label">LinkedIn</span>
+              <span class="detail-value">Goutom Dash</span>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -33,68 +49,123 @@ useScrollReveal(sectionRef)
 
 <style scoped>
 .contact {
-  padding: 60px 0 100px;
+  padding: 32px 16px 40px;
   border-top: 4px solid var(--border);
 }
 
 .section-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.section-header {
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 12px;
+.contact-card {
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  padding: 24px;
 }
 
 .section-title {
-  font-size: 2.5rem;
-  letter-spacing: -1px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.contact-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
 }
 
-.ci-block {
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.contact-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 2px solid var(--border);
+  gap: 12px;
+  padding: 14px 16px;
   background: var(--bg-card);
-  padding: 20px 24px;
   text-decoration: none;
   color: var(--text);
-  transition: all 0.2s;
+  transition: background 0.15s;
 }
 
-.ci-block:hover {
-  background: var(--text);
-  color: var(--bg);
-  transform: translateY(-4px);
+.contact-item:hover {
+  background: var(--bg-alt);
+  text-decoration: none;
 }
 
-.ci-key {
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.contact-item.whatsapp:hover {
+  background: #e8f5e9;
 }
 
-.ci-val {
-  font-family: var(--font);
+.contact-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
   font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.contact-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.detail-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .contact {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .contact-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
-  .ci-block {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  .contact {
+    padding: 24px 0 32px;
+  }
+  .contact-card {
+    padding: 16px;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .contact-subtitle {
+    font-size: 0.85rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-item {
+    padding: 12px;
   }
 }
 </style>

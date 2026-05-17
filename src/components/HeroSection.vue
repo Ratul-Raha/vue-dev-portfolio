@@ -2,7 +2,13 @@
   <section ref="heroRef" class="hero reveal">
     <div class="hero-container">
       <div class="hero-header">
-        <h1 class="hero-title">Goutom Dash</h1>
+        <div class="hero-title-row">
+          <h1 class="hero-title">Goutom Dash</h1>
+          <span class="hire-badge">
+            <span class="hire-dot"></span>
+            Available for Hire
+          </span>
+        </div>
         <h2 class="hero-subtitle">Founding Engineer at Marconi AI</h2>
       </div>
 
@@ -17,9 +23,8 @@
             Architect &middot; Builder &middot; Founder. 6 years+. Still figuring it out.
           </p>
           <div class="hero-actions">
-            <a href="#projectsSection" class="action-btn">View Projects</a>
+            <a href="https://wa.me/8801684566828" target="_blank" class="action-btn whatsapp-btn">WhatsApp Me!</a>
             <a href="#contactSection" class="action-btn">Get In Touch</a>
-            <a href="https://github.com/Ratul-Raha" target="_blank" class="action-btn">GitHub</a>
           </div>
         </div>
       </div>
@@ -37,10 +42,12 @@ useScrollReveal(heroRef)
 
 <style scoped>
 .hero {
-  padding: 80px 0 60px;
+  padding: 40px 16px 60px;
 }
 
 .hero-container {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -50,6 +57,41 @@ useScrollReveal(heroRef)
   border-bottom: 4px solid var(--border);
   padding-bottom: 16px;
   margin-bottom: 8px;
+}
+
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hire-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #006600;
+  color: #ffffff;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: var(--font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.hire-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff00;
+  border-radius: 50%;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
 }
 
 .hero-title {
@@ -136,21 +178,68 @@ useScrollReveal(heroRef)
   color: var(--bg);
 }
 
+.whatsapp-btn {
+  background: #25D366;
+  color: #ffffff;
+  border-color: #25D366;
+}
+
+.whatsapp-btn:hover {
+  background: #128C7E;
+  border-color: #128C7E;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 60px 0 60px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 @media (max-width: 600px) {
+  .hero {
+    padding: 60px 0 40px;
+  }
+  .hero-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hire-badge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+  .hire-dot {
+    width: 6px;
+    height: 6px;
+  }
   .hero-title {
-    font-size: 3rem;
+    font-size: 2.2rem;
   }
   .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .lead-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+  .hero-bio {
+    font-size: 1rem;
+    line-height: 1.6;
   }
   .hero-actions {
     flex-direction: column;
+    gap: 8px;
   }
   .action-btn {
     text-align: center;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+  .inc-badge {
+    font-size: 0.75rem;
+    padding: 1px 6px;
   }
 }
 </style>

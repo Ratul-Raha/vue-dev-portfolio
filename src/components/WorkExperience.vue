@@ -81,11 +81,13 @@ const jobs = [
 
 <style scoped>
 .experience {
-  padding: 60px 0;
+  padding: 60px 16px;
   border-top: 4px solid var(--border);
 }
 
 .section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -200,7 +202,20 @@ const jobs = [
   font-weight: 700;
 }
 
+@media (min-width: 768px) {
+  .experience {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 @media (max-width: 600px) {
+  .experience {
+    padding: 40px 0;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
   .tl-content {
     padding: 16px;
   }
@@ -209,8 +224,20 @@ const jobs = [
     align-items: flex-start;
     gap: 4px;
   }
+  .tl-company {
+    font-size: 1.2rem;
+  }
   .tl-duration::after {
     display: none;
+  }
+  .tl-role {
+    font-size: 0.95rem;
+  }
+  .tl-desc {
+    font-size: 0.9rem;
+  }
+  .tl-list li {
+    font-size: 0.85rem;
   }
 }
 </style>

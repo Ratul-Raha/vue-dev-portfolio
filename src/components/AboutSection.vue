@@ -60,11 +60,13 @@ useScrollReveal(sectionRef)
 
 <style scoped>
 .about {
-  padding: 60px 0;
+  padding: 60px 16px;
   border-top: 4px solid var(--border);
 }
 
 .section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -180,12 +182,52 @@ useScrollReveal(sectionRef)
   line-height: 1.5;
 }
 
+@media (min-width: 768px) {
+  .about {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
   }
   .expertise-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 40px 0;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .lead-text {
+    font-size: 1rem;
+  }
+  .about-text-col p:not(.lead-text) {
+    font-size: 0.9rem;
+  }
+  .fortune-text {
+    font-size: 0.95rem;
+  }
+  .fortune-attrib {
+    font-size: 0.8rem;
+  }
+  .expertise-section h3 {
+    font-size: 0.9rem;
+  }
+  .ecard {
+    padding: 16px;
+  }
+  .ecard h4 {
+    font-size: 1rem;
+  }
+  .ecard p {
+    font-size: 0.85rem;
   }
 }
 </style>

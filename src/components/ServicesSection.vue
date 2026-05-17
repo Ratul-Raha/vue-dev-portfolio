@@ -30,11 +30,13 @@ useScrollReveal(sectionRef, 60)
 
 <style scoped>
 .services {
-  padding: 60px 0;
+  padding: 60px 16px;
   border-top: 4px solid var(--border);
 }
 
 .section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -71,13 +73,35 @@ useScrollReveal(sectionRef, 60)
   font-weight: 700;
 }
 
+@media (min-width: 768px) {
+  .services {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .expertise-block {
     padding: 20px;
   }
-  
   .expertise-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .services {
+    padding: 40px 0;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .expertise-block {
+    padding: 16px;
+  }
+  .expertise-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
 </style>

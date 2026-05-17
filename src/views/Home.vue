@@ -7,7 +7,6 @@
         <section id="servicesSection"><ServicesSection /></section>
         <section id="experienceSection"><WorkExperience /></section>
         <section id="projectsSection"><ProjectsSection /></section>
-        <section id="githubSection"><GithubStats /></section>
         <section id="contactSection"><ContactSection /></section>
       </div>
       <div class="home-sidebar">
@@ -28,7 +27,6 @@ import AboutSection from "../components/AboutSection.vue";
 import ServicesSection from "../components/ServicesSection.vue";
 import ProjectsSection from "../components/ProjectsSection.vue";
 import WorkExperience from "../components/WorkExperience.vue";
-import GithubStats from "../components/GithubStats.vue";
 import ContactSection from "../components/ContactSection.vue";
 import SideMenu from "../components/SideMenu.vue";
 
@@ -40,7 +38,7 @@ function scrollToSection(id) {
 }
 
 function handleScroll() {
-  const ids = ["homeSection","aboutSection","servicesSection","experienceSection","projectsSection","githubSection","contactSection"];
+  const ids = ["homeSection","aboutSection","servicesSection","experienceSection","projectsSection","contactSection"];
   for (let i = ids.length - 1; i >= 0; i--) {
     const el = document.getElementById(ids[i]);
     if (el && el.getBoundingClientRect().top <= 120) {
@@ -55,7 +53,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 
 <style scoped>
 .home { 
-  padding-top: 60px; /* Space for TopMenu */
+  padding-top: 52px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -67,7 +65,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 0 20px;
+  width: 100%;
 }
 
 .home-main { 
@@ -126,6 +124,8 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
     flex-direction: column;
     gap: 8px;
     text-align: center;
+    padding: 16px 20px;
+    font-size: 0.75rem;
   }
 }
 </style>

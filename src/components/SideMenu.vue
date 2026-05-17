@@ -48,7 +48,6 @@ const navItems = [
   { id: "servicesSection", label: "Skills" },
   { id: "experienceSection", label: "Experience" },
   { id: "projectsSection", label: "Projects" },
-  { id: "githubSection", label: "Open Source" },
   { id: "contactSection", label: "Contact" },
 ];
 

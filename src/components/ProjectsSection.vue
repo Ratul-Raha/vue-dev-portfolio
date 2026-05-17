@@ -97,11 +97,13 @@ const projects = [
 
 <style scoped>
 .projects-section {
-  padding: 60px 0;
+  padding: 60px 16px;
   border-top: 4px solid var(--border);
 }
 
 .section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -256,8 +258,44 @@ const projects = [
 }
 
 @media (min-width: 768px) {
+  .projects-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .proj-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-section {
+    padding: 40px 0;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .proj-img {
+    height: 140px;
+  }
+  .proj-body {
+    padding: 16px;
+  }
+  .proj-title {
+    font-size: 1.1rem;
+  }
+  .proj-year {
+    font-size: 0.8rem;
+  }
+  .proj-desc {
+    font-size: 0.9rem;
+  }
+  .proj-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+  .cta-link {
+    padding: 10px 20px;
+    font-size: 0.85rem;
   }
 }
 </style>

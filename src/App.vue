@@ -31,6 +31,8 @@ import TopMenu from './components/TopMenu.vue'
   --border-light: #000000;
   --accent: #0000ee;
   --accent-red: #d32f2f;
+  --accent-blue: #0000cc;
+  --accent-green: #006600;
   --font: 'Times New Roman', Times, Georgia, serif;
 }
 
