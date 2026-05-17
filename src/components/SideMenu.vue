@@ -1,43 +1,35 @@
 <template>
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-heading">
-        <span class="head-icon">#</span> navigate
-      </div>
+      <div class="sidebar-heading">Index</div>
       <div
-        v-for="item in navItems"
+        v-for="(item, index) in navItems"
         :key="item.id"
         class="sidebar-link"
         :class="{ active: active === item.id }"
         @click="handleSelect(item.id)"
       >
-        <span class="link-arrow">{{ active === item.id ? '>' : '-' }}</span>
+        <span class="link-num">{{ index + 1 }}.</span>
         {{ item.label }}
       </div>
     </div>
+    
     <div class="sidebar-section">
-      <div class="sidebar-heading">
-        <span class="head-icon">*</span> status
+      <div class="sidebar-heading">Details</div>
+      <div class="sidebar-stat">
+        <span class="stat-label">Status:</span> Online
       </div>
       <div class="sidebar-stat">
-        <span class="stat-dot"></span>
-        online
-      </div>
-      <div class="sidebar-stat">
-        <span class="stat-label">repos:</span> 39+
-      </div>
-      <div class="sidebar-stat">
-        <span class="stat-label">uptime:</span> 99.9%
+        <span class="stat-label">Location:</span> Remote
       </div>
     </div>
+
     <div class="sidebar-section">
-      <div class="sidebar-heading">
-        <span class="head-icon">$</span> quick
-      </div>
+      <div class="sidebar-heading">Contact</div>
       <div class="sidebar-quick">
-        <a href="mailto:goutomdash.ratul@gmail.com" class="quick-link">email</a>
-        <a href="https://github.com/Ratul-Raha" target="_blank" class="quick-link">github</a>
-        <a href="https://www.linkedin.com/in/goutom-kumer-dash-ratul-7b48471b9/" target="_blank" class="quick-link">linkedin</a>
+        <a href="mailto:goutomdash.ratul@gmail.com" class="quick-link">Email</a>
+        <a href="https://github.com/Ratul-Raha" target="_blank" class="quick-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/goutom-kumer-dash-ratul-7b48471b9/" target="_blank" class="quick-link">LinkedIn</a>
       </div>
     </div>
   </aside>
@@ -51,12 +43,13 @@ const emit = defineEmits(["navigate"]);
 const active = ref("homeSection");
 
 const navItems = [
-  { id: "homeSection", label: "home" },
-  { id: "aboutSection", label: "about" },
-  { id: "servicesSection", label: "skills" },
-  { id: "experienceSection", label: "experience" },
-  { id: "projectsSection", label: "projects" },
-  { id: "contactSection", label: "contact" },
+  { id: "homeSection", label: "Home" },
+  { id: "aboutSection", label: "About" },
+  { id: "servicesSection", label: "Skills" },
+  { id: "experienceSection", label: "Experience" },
+  { id: "projectsSection", label: "Projects" },
+  { id: "githubSection", label: "Open Source" },
+  { id: "contactSection", label: "Contact" },
 ];
 
 watch(() => props.activeSection, (v) => { active.value = v; });
@@ -69,91 +62,98 @@ function handleSelect(id) {
 
 <style scoped>
 .sidebar {
-  font-family: var(--font);
-  font-size: 0.82rem;
-  padding: 16px 0;
+  font-family: var(--font-sans);
+  padding: 24px 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
 }
 
 .sidebar-section {
   border: 2px solid var(--border);
-  padding: 10px 12px;
+  background: var(--bg-card);
 }
 
 .sidebar-heading {
+  font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.head-icon {
-  color: var(--accent);
-  margin-right: 4px;
+  font-size: 1.1rem;
+  color: var(--bg);
+  background: var(--text);
+  padding: 8px 12px;
+  text-transform: capitalize;
+  border-bottom: 2px solid var(--border);
 }
 
 .sidebar-link {
-  padding: 3px 0;
+  padding: 10px 12px;
   cursor: pointer;
-  color: var(--accent-blue);
-  text-decoration: underline;
-  transition: color 0.15s;
-}
-.sidebar-link:hover {
-  color: var(--accent);
-}
-.sidebar-link.active {
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-light);
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.link-arrow {
-  display: inline-block;
-  width: 12px;
+.sidebar-link:last-child {
+  border-bottom: none;
+}
+
+.sidebar-link:hover {
+  background: var(--bg-alt);
+}
+
+.sidebar-link.active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.link-num {
   font-weight: 700;
-  text-decoration: none;
+  opacity: 0.7;
 }
 
 .sidebar-stat {
-  padding: 2px 0;
-  color: var(--text-secondary);
-  font-size: 0.78rem;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border-light);
   display: flex;
-  align-items: center;
-  gap: 6px;
+  justify-content: space-between;
 }
 
-.stat-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-green);
-  display: inline-block;
+.sidebar-stat:last-child {
+  border-bottom: none;
 }
 
 .stat-label {
-  color: var(--text-muted);
+  font-weight: 600;
 }
 
 .sidebar-quick {
   display: flex;
   flex-direction: column;
-  gap: 3px;
 }
 
 .quick-link {
-  font-size: 0.78rem;
-  color: var(--accent-blue);
-  text-decoration: underline;
-  padding: 2px 0;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+  text-decoration: none;
+  transition: background 0.2s;
 }
+
+.quick-link:last-child {
+  border-bottom: none;
+}
+
 .quick-link:hover {
-  color: var(--accent);
+  background: var(--text);
+  color: var(--bg);
 }
 </style>

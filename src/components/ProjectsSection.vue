@@ -1,14 +1,8 @@
 <template>
   <section ref="sectionRef" class="projects-section reveal">
     <div class="section-inner">
-      <h2 class="section-title">
-        <span class="title-hash">#</span>
-        <span class="title-text">projects</span>
-      </h2>
-
-      <div class="term-line">
-        <span class="prompt">$</span>
-        <span class="cmd">ls</span> ~/projects/
+      <div class="section-header">
+        <h2 class="section-title">Selected Projects</h2>
       </div>
 
       <div class="proj-grid reveal-stagger">
@@ -19,7 +13,7 @@
           <div class="proj-body">
             <div class="proj-head">
               <h3 class="proj-title">{{ p.title }}</h3>
-              <span class="proj-year">({{ p.year }})</span>
+              <span class="proj-year">{{ p.year }}</span>
             </div>
             <p class="proj-desc">{{ p.description }}</p>
             <div class="proj-techs">
@@ -28,12 +22,8 @@
               </span>
             </div>
             <div class="proj-links">
-              <a v-if="p.live" :href="p.live" target="_blank">
-                <span class="link-bracket">[</span> live <span class="link-bracket">]</span>
-              </a>
-              <a v-if="p.github && p.github !== '#'" :href="p.github" target="_blank">
-                <span class="link-bracket">[</span> code <span class="link-bracket">]</span>
-              </a>
+              <a v-if="p.live" :href="p.live" target="_blank" class="proj-btn">Visit Site</a>
+              <a v-if="p.github && p.github !== '#'" :href="p.github" target="_blank" class="proj-btn">Source Code</a>
             </div>
           </div>
         </div>
@@ -41,7 +31,7 @@
 
       <div class="section-cta">
         <router-link to="/projects" class="cta-link">
-          <span class="cta-bracket">[</span> view all projects → <span class="cta-bracket">]</span>
+          View All Projects &rarr;
         </router-link>
       </div>
     </div>
@@ -66,39 +56,39 @@ const icon = (name, color) => `https://cdn.simpleicons.org/${name}/${color}`;
 const projects = [
   {
     title: "Fluent Cart", year: "2023-25",
-    description: "High-impact WordPress eCommerce plugin",
+    description: "High-impact WordPress eCommerce plugin.",
     image: FluentCartImg,
     icons: [icon("vuedotjs","4FC08D"), icon("laravel","FA5555"), icon("wordpress","21759B")],
     live: "https://fluentcart.com"
   },
   {
     title: "CalypsoPro EMR", year: "2022",
-    description: "HIPAA-compliant healthcare system",
+    description: "HIPAA-compliant healthcare system.",
     image: CalypsoImg,
     icons: [icon("php","777BB4"), icon("javascript","F7DF1E")],
     live: "https://www.calystaproemr.com/"
   },
   {
     title: "Marconi", year: "2025",
-    description: "AI customer support agent for WhatsApp and Telegram",
+    description: "AI customer support agent for WhatsApp and Telegram.",
     image: MarconiImg,
     icons: [icon("python","3776AB"), icon("openai","412991"), icon("whatsapp","25D366"), icon("telegram","26A5E4")]
   },
   {
     title: "Consulta", year: "2025",
-    description: "AI-powered CRM for student consultancy services",
+    description: "AI-powered CRM for student consultancy services.",
     image: ConsultaImg,
     icons: [icon("react","61DAFB"), icon("nodedotjs","339933"), icon("openai","412991")]
   },
   {
     title: "Eventick", year: "2025",
-    description: "Paymentless event booking and RSVP platform",
+    description: "Paymentless event booking and RSVP platform.",
     image: EventickImg,
     icons: [icon("vuedotjs","4FC08D"), icon("nodedotjs","339933"), icon("tailwindcss","06B6D4")]
   },
   {
     title: "GeoThread", year: "2025",
-    description: "On-demand print and framing service",
+    description: "On-demand print and framing service.",
     image: GeoThreadImg,
     icons: [icon("laravel","FA5555"), icon("vuedotjs","4FC08D"), icon("mysql","4479A1")]
   }
@@ -107,76 +97,67 @@ const projects = [
 
 <style scoped>
 .projects-section {
-  padding: 40px 20px;
-  background: var(--bg-alt);
+  padding: 60px 0;
+  border-top: 4px solid var(--border);
 }
 
 .section-inner {
-  max-width: 640px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 32px;
+}
+
+.section-header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 12px;
 }
 
 .section-title {
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 2.5rem;
+  letter-spacing: -1px;
 }
-
-.title-hash {
-  color: var(--accent-green);
-  font-size: 1.2rem;
-}
-
-.title-text {
-  color: var(--text);
-  font-weight: 700;
-}
-
-.term-line {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-.prompt { color: var(--accent-green); font-weight: 600; }
-.cmd { color: var(--accent-blue); }
 
 .proj-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 24px;
 }
 
 .proj-card {
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--border-light);
-  background: var(--bg);
-  transition: border-color 0.2s;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  transition: transform 0.2s;
 }
+
 .proj-card:hover {
-  border-color: var(--border);
+  transform: translateY(-4px);
 }
 
 .proj-img {
   position: relative;
   width: 100%;
-  height: 140px;
+  height: 200px;
   overflow: hidden;
-  background: var(--bg);
-  border-bottom: 2px solid var(--border-light);
+  background: var(--bg-alt);
+  border-bottom: 2px solid var(--border);
 }
 
 .proj-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(100%) contrast(1.2);
+  transition: filter 0.3s;
+}
+
+.proj-card:hover .proj-img img {
+  filter: grayscale(0%);
 }
 
 .proj-body {
-  padding: 12px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -186,37 +167,41 @@ const projects = [
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
 }
 
 .proj-title {
-  font-size: 0.92rem;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
   font-weight: 700;
 }
 
 .proj-year {
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--text-muted);
 }
 
 .proj-desc {
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.5;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   flex: 1;
 }
 
 .proj-techs {
   display: flex;
-  gap: 6px;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .proj-tech-icon {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   display: flex;
 }
 .proj-tech-icon img { width: 100%; height: 100%; object-fit: contain; }
@@ -224,44 +209,55 @@ const projects = [
 .proj-links {
   display: flex;
   gap: 12px;
-  padding-top: 6px;
-  border-top: 1px solid var(--border-light);
 }
 
-.proj-links a {
-  font-size: 0.82rem;
-  text-decoration: underline;
+.proj-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 2px solid var(--border);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.2s;
 }
 
-.link-bracket {
-  color: var(--accent-green);
+.proj-btn:hover {
+  background: var(--text);
+  color: var(--bg);
 }
 
 .section-cta {
   text-align: center;
+  margin-top: 24px;
 }
 
 .cta-link {
-  font-size: 0.9rem;
-  color: var(--accent-blue);
-  text-decoration: underline;
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--border);
+  transition: all 0.2s;
 }
+
 .cta-link:hover {
-  color: var(--accent);
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
 }
 
-.cta-bracket {
-  color: var(--accent-green);
-}
-
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .proj-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 768px) {
-  .projects-section {
-    padding: 48px 0;
   }
 }
 </style>

@@ -2,19 +2,15 @@
   <nav class="topnav">
     <div class="nav-inner">
       <router-link to="/" class="nav-brand">
-        <span class="brand-prompt">></span>
-        <span class="brand-name">goutom</span>
-        <span class="brand-sep">@</span>
-        <span class="brand-host">portfolio</span>
-        <span class="brand-path">:~$</span>
+        <span class="brand-name">G. Dash</span>
       </router-link>
       <button class="nav-toggle" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">
-        <span class="toggle-icon" :class="{ open: menuOpen }"></span>
+        <span class="toggle-text">{{ menuOpen ? 'Close' : 'Menu' }}</span>
       </button>
       <div class="nav-links" :class="{ open: menuOpen }">
-        <router-link to="/" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">[ home ]</router-link>
-        <router-link to="/projects" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">[ projects ]</router-link>
-        <router-link to="/about" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">[ about ]</router-link>
+        <router-link to="/" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">Home</router-link>
+        <router-link to="/projects" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">Projects</router-link>
+        <router-link to="/about" class="nav-link" exact-active-class="link-active" @click="menuOpen = false">About</router-link>
       </div>
     </div>
   </nav>
@@ -31,139 +27,104 @@ const menuOpen = ref(false)
   top: 0;
   left: 0;
   right: 0;
-  height: 48px;
   background: var(--bg);
   border-bottom: 2px solid var(--border);
   z-index: 100;
 }
 
 .nav-inner {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
-  height: 100%;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  padding: 0 16px;
 }
 
 .nav-brand {
-  font-size: 0.85rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--text);
+  padding: 12px 20px;
+  border-right: 2px solid var(--border);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.nav-brand:hover {
-  text-decoration: underline;
-  color: var(--text);
 }
 
-.brand-prompt { color: var(--accent-green); margin-right: 4px; }
-.brand-name { color: var(--accent-amber); font-weight: 600; }
-.brand-sep { color: var(--text-muted); }
-.brand-host { color: var(--accent-blue); font-weight: 600; }
-.brand-path { color: var(--text-muted); margin-left: 2px; }
+.nav-brand:hover {
+  background: var(--text);
+  color: var(--bg);
+  text-decoration: none;
+}
 
 .nav-toggle {
   display: none;
-  width: 32px;
-  height: 32px;
   background: none;
-  border: 1px solid var(--border);
+  border: none;
+  border-left: 2px solid var(--border);
   cursor: pointer;
-  padding: 6px;
-  flex-shrink: 0;
+  padding: 0 20px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text);
 }
 
-.toggle-icon {
-  display: block;
-  width: 100%;
-  height: 2px;
+.nav-toggle:hover {
   background: var(--text);
-  position: relative;
-  transition: background 0.2s;
-}
-.toggle-icon::before,
-.toggle-icon::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--text);
-  transition: transform 0.2s;
-}
-.toggle-icon::before { top: -6px; }
-.toggle-icon::after { bottom: -6px; }
-
-.toggle-icon.open {
-  background: transparent;
-}
-.toggle-icon.open::before {
-  transform: translateY(6px) rotate(45deg);
-}
-.toggle-icon.open::after {
-  transform: translateY(-6px) rotate(-45deg);
+  color: var(--bg);
 }
 
 .nav-links {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: stretch;
 }
 
 .nav-link {
-  font-size: 0.82rem;
-  color: var(--accent-blue);
-  text-decoration: underline;
-  padding: 4px 8px;
-  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--text);
+  padding: 16px 24px;
+  border-left: 2px solid var(--border);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
 }
+
 .nav-link:hover {
-  color: var(--accent);
+  background: var(--text);
+  color: var(--bg);
+  text-decoration: none;
 }
 
 .link-active {
-  color: var(--accent);
-  font-weight: 600;
+  background: var(--text);
+  color: var(--bg);
 }
 
-@media (max-width: 600px) {
-  .topnav {
-    height: auto;
-    min-height: 48px;
-  }
-
+@media (max-width: 768px) {
   .nav-inner {
     flex-wrap: wrap;
-    height: auto;
-    min-height: 48px;
-    padding: 8px 16px;
+  }
+
+  .nav-brand {
+    border-right: none;
+    flex: 1;
   }
 
   .nav-toggle {
     display: block;
-    order: 2;
-  }
-
-  .nav-brand {
-    order: 1;
-    flex: 1;
   }
 
   .nav-links {
-    order: 3;
     display: none;
     width: 100%;
     flex-direction: column;
-    gap: 0;
-    padding-top: 8px;
-    border-top: 1px solid var(--border);
-    margin-top: 8px;
+    border-top: 2px solid var(--border);
   }
 
   .nav-links.open {
@@ -172,10 +133,10 @@ const menuOpen = ref(false)
 
   .nav-link {
     width: 100%;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-light);
-    text-align: left;
+    border-left: none;
+    border-bottom: 2px solid var(--border);
   }
+  
   .nav-link:last-child {
     border-bottom: none;
   }

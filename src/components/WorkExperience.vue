@@ -1,31 +1,21 @@
 <template>
   <section ref="sectionRef" class="experience reveal">
     <div class="section-inner">
-      <h2 class="section-title">
-        <span class="title-hash">#</span>
-        <span class="title-text">experience</span>
-      </h2>
-
-      <div class="term-line">
-        <span class="prompt">$</span>
-        <span class="cmd">cat</span> ~/career.log
+      <div class="section-header">
+        <h2 class="section-title">Experience</h2>
       </div>
 
       <div class="timeline reveal-stagger">
         <div v-for="(job, i) in jobs" :key="i" class="tl-item">
-          <div class="tl-marker">
-            <span class="tl-dot" :class="job.badge === 'Current' ? 'dot-active' : 'dot-past'"></span>
-            <span class="tl-line" v-if="i < jobs.length - 1"></span>
-          </div>
           <div class="tl-content">
             <div class="tl-head">
               <h3 class="tl-company">{{ job.company }}</h3>
-              <span class="tl-badge" :class="job.badge === 'Current' ? 'badge-current' : 'badge-past'">
-                [{{ job.badge }}]
-              </span>
+              <div class="tl-meta">
+                <span class="tl-duration">{{ job.duration }}</span>
+                <span class="tl-location">{{ job.location }}</span>
+              </div>
             </div>
             <div class="tl-role">{{ job.position }}</div>
-            <div class="tl-meta">{{ job.duration }} — {{ job.location }}</div>
             <p class="tl-desc">{{ job.description }}</p>
             <ul class="tl-list">
               <li v-for="r in job.responsibilities" :key="r">{{ r }}</li>
@@ -63,7 +53,7 @@ const jobs = [
     company: "WPManageNinja LLC",
     position: "Core Software Engineer",
     badge: "Current",
-    duration: "2023 - Present",
+    duration: "2023 - 2025",
     location: "Delaware, USA",
     description: "Building WordPress plugins that power hundreds of thousands of websites worldwide.",
     responsibilities: [
@@ -91,90 +81,52 @@ const jobs = [
 
 <style scoped>
 .experience {
-  padding: 40px 20px;
+  padding: 60px 0;
+  border-top: 4px solid var(--border);
 }
 
 .section-inner {
-  max-width: 640px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 32px;
+}
+
+.section-header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 12px;
 }
 
 .section-title {
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 2.5rem;
+  letter-spacing: -1px;
 }
-
-.title-hash {
-  color: var(--accent-purple);
-  font-size: 1.2rem;
-}
-
-.title-text {
-  color: var(--text);
-  font-weight: 700;
-}
-
-.term-line {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-.prompt { color: var(--accent-green); font-weight: 600; }
-.cmd { color: var(--accent-blue); }
 
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 24px;
 }
 
 .tl-item {
   display: flex;
-  gap: 16px;
-}
-
-.tl-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 16px;
-  flex-shrink: 0;
-  padding-top: 4px;
-}
-
-.tl-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-.dot-active {
-  background: var(--accent-green);
-}
-
-.dot-past {
-  background: var(--border-light);
-}
-
-.tl-line {
-  width: 2px;
-  flex: 1;
-  background: var(--border-light);
-  margin: 4px 0;
 }
 
 .tl-content {
   flex: 1;
-  border: 2px solid var(--border-light);
-  background: var(--bg-alt);
-  padding: 12px 14px;
-  margin-bottom: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  padding: 24px;
+  position: relative;
+}
+
+.tl-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -12px;
+  width: 12px;
+  height: 100%;
+  border-left: 4px solid var(--border);
 }
 
 .tl-head {
@@ -182,65 +134,83 @@ const jobs = [
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
-  margin-bottom: 2px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .tl-company {
-  font-size: 0.95rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
-.tl-badge {
-  font-size: 0.72rem;
+.tl-meta {
+  display: flex;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-muted);
   font-weight: 600;
-  white-space: nowrap;
+  text-transform: uppercase;
 }
 
-.badge-current { color: var(--accent-green); }
-.badge-past { color: var(--text-muted); }
+.tl-duration::after {
+  content: '|';
+  margin-left: 12px;
+  color: var(--border-light);
+}
 
 .tl-role {
-  font-size: 0.85rem;
-  color: var(--accent-blue);
-  margin-bottom: 4px;
-}
-
-.tl-meta {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-bottom: 8px;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
 .tl-desc {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   line-height: 1.6;
 }
 
 .tl-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .tl-list li {
   position: relative;
-  padding-left: 14px;
-  font-size: 0.82rem;
+  padding-left: 16px;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
 .tl-list li::before {
-  content: '*';
+  content: '—';
   position: absolute;
   left: 0;
-  color: var(--accent-green);
+  color: var(--text);
+  font-weight: 700;
 }
 
-@media (min-width: 768px) {
-  .experience {
-    padding: 48px 0;
+@media (max-width: 600px) {
+  .tl-content {
+    padding: 16px;
+  }
+  .tl-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .tl-duration::after {
+    display: none;
   }
 }
 </style>

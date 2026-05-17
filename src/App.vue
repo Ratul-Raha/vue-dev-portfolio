@@ -1,6 +1,5 @@
 <template>
   <div class="app">
-    <BootSequence />
     <TopMenu />
     <router-view v-slot="{ Component }">
       <transition name="page" mode="out-in">
@@ -12,12 +11,9 @@
 
 <script setup>
 import TopMenu from './components/TopMenu.vue'
-import BootSequence from './components/BootSequence.vue'
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -25,20 +21,18 @@ import BootSequence from './components/BootSequence.vue'
 }
 
 :root {
-  --bg: #ffffff;
-  --bg-alt: #f5f5f5;
-  --bg-card: #fafafa;
-  --text: #1a1a1a;
-  --text-secondary: #555555;
-  --text-muted: #888888;
-  --border: #333333;
-  --border-light: #cccccc;
-  --accent: #cc0000;
-  --accent-blue: #0000cc;
-  --accent-green: #006600;
-  --accent-purple: #660099;
-  --accent-amber: #996600;
-  --font: 'IBM Plex Mono', 'Courier New', monospace;
+  --bg: #f4f4f0;
+  --bg-alt: #eaeaea;
+  --bg-card: #ffffff;
+  --text: #111111;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  --border: #000000;
+  --border-light: #000000;
+  --accent: #0000ee; /* Classic Web Blue */
+  --accent-red: #d32f2f;
+  --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
 }
 
 html {
@@ -47,11 +41,12 @@ html {
 }
 
 body {
-  font-family: var(--font);
+  font-family: var(--font-sans);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
@@ -60,20 +55,23 @@ body {
 }
 
 a {
-  color: var(--accent-blue);
-  text-decoration: underline;
+  color: var(--text);
+  text-decoration: none;
 }
 a:hover {
   color: var(--accent);
+  text-decoration: underline;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
   font-weight: 700;
   color: var(--text);
+  line-height: 1.2;
 }
 
 .page-enter-active, .page-leave-active {
-  transition: opacity 0.15s;
+  transition: opacity 0.2s;
 }
 .page-enter-from, .page-leave-to {
   opacity: 0;
@@ -82,7 +80,7 @@ h1, h2, h3, h4 {
 .reveal {
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 .reveal.revealed {
   opacity: 1;
@@ -100,7 +98,7 @@ h1, h2, h3, h4 {
   transform: translateY(0);
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f0f0f0; }
-::-webkit-scrollbar-thumb { background: #aaa; border-radius: 0; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); border-left: 1px solid var(--border); }
+::-webkit-scrollbar-thumb { background: var(--text); border-radius: 0; }
 </style>
