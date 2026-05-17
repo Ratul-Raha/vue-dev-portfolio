@@ -41,7 +41,7 @@ const menuOpen = ref(false)
 }
 
 .nav-brand {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text);
@@ -65,7 +65,7 @@ const menuOpen = ref(false)
   border-left: 2px solid var(--border);
   cursor: pointer;
   padding: 0 20px;
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-weight: 600;
   text-transform: uppercase;
   color: var(--text);
@@ -82,7 +82,7 @@ const menuOpen = ref(false)
 }
 
 .nav-link {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.9rem;

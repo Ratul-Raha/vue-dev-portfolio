@@ -29,10 +29,9 @@ import TopMenu from './components/TopMenu.vue'
   --text-muted: #666666;
   --border: #000000;
   --border-light: #000000;
-  --accent: #0000ee; /* Classic Web Blue */
+  --accent: #0000ee;
   --accent-red: #d32f2f;
-  --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font: 'Times New Roman', Times, Georgia, serif;
 }
 
 html {
@@ -41,12 +40,11 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
@@ -64,7 +62,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-weight: 700;
   color: var(--text);
   line-height: 1.2;

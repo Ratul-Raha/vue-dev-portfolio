@@ -60,7 +60,7 @@ useScrollReveal(sectionRef, 60)
 }
 
 .expertise-text {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 1.2rem;
   line-height: 1.8;
   color: var(--text-secondary);

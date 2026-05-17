@@ -139,7 +139,7 @@ const jobs = [
 }
 
 .tl-company {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -147,7 +147,7 @@ const jobs = [
 .tl-meta {
   display: flex;
   gap: 12px;
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.9rem;
   color: var(--text-muted);
   font-weight: 600;
@@ -161,7 +161,7 @@ const jobs = [
 }
 
 .tl-role {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text);

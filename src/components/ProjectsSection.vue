@@ -173,13 +173,13 @@ const projects = [
 }
 
 .proj-title {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.4rem;
   font-weight: 700;
 }
 
 .proj-year {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-muted);
@@ -215,7 +215,7 @@ const projects = [
   display: inline-block;
   padding: 8px 16px;
   border: 2px solid var(--border);
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-weight: 600;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -240,7 +240,7 @@ const projects = [
   padding: 12px 24px;
   background: var(--text);
   color: var(--bg);
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-weight: 600;
   font-size: 1rem;
   text-transform: uppercase;

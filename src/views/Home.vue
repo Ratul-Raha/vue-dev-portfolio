@@ -88,7 +88,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   align-items: center;
   justify-content: space-between;
   border-top: 4px solid var(--border);
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;

@@ -24,13 +24,7 @@
 
         <div class="about-details-col">
           <div class="profile-block">
-            <h3>Profile Summary</h3>
-            <ul class="profile-list">
-              <li><strong>Name:</strong> Goutom Dash</li>
-              <li><strong>Role:</strong> Founder & AI Engineer</li>
-              <li><strong>Location:</strong> Sylhet, Bangladesh</li>
-              <li><strong>Status:</strong> Active & Building</li>
-            </ul>
+            <img src="../assets/images/me.jpg" alt="Goutom Dash" class="profile-img" />
           </div>
         </div>
       </div>
@@ -101,7 +95,7 @@ useScrollReveal(sectionRef)
 .lead-text {
   font-size: 1.25rem;
   font-weight: 500;
-  font-family: var(--font-serif);
+  font-family: var(--font);
   line-height: 1.6;
 }
 
@@ -118,7 +112,7 @@ useScrollReveal(sectionRef)
 }
 
 .fortune-text {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.1rem;
   font-style: italic;
   display: block;
@@ -133,37 +127,13 @@ useScrollReveal(sectionRef)
 
 .profile-block {
   border: 2px solid var(--border);
-  padding: 20px;
-  background: var(--text);
-  color: var(--bg);
+  background: var(--bg-card);
+  overflow: hidden;
 }
 
-.profile-block h3 {
-  font-family: var(--font-sans);
-  color: var(--bg);
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid var(--bg-alt);
-  padding-bottom: 8px;
-}
-
-.profile-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.profile-list li {
-  font-size: 0.95rem;
-}
-
-.profile-list strong {
-  display: inline-block;
-  width: 80px;
-  opacity: 0.8;
+.profile-img {
+  width: 100%;
+  display: block;
 }
 
 .expertise-section {
@@ -171,7 +141,7 @@ useScrollReveal(sectionRef)
 }
 
 .expertise-section h3 {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 1px;
@@ -196,7 +166,7 @@ useScrollReveal(sectionRef)
 }
 
 .ecard h4 {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 1.1rem;
   margin-bottom: 8px;
   border-bottom: 2px solid var(--border);

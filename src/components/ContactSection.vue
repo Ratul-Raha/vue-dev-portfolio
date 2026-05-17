@@ -6,17 +6,17 @@
       </div>
 
       <div class="contact-info">
-        <a href="mailto:goutomdash.ratul@gmail.com" class="ci-block">
+        <a href="mailto:gkdratul@gmail.com" class="ci-block">
           <span class="ci-key">Email</span>
-          <span class="ci-val">goutomdash.ratul@gmail.com</span>
+          <span class="ci-val">gkdratul@gmail.com</span>
         </a>
         <a href="https://github.com/Ratul-Raha" target="_blank" class="ci-block">
           <span class="ci-key">GitHub</span>
           <span class="ci-val">github.com/Ratul-Raha</span>
         </a>
-        <a href="https://www.linkedin.com/in/goutom-kumer-dash-ratul-7b48471b9/" target="_blank" class="ci-block">
+        <a href="https://www.linkedin.com/in/goutom-dash-7b48471b9/" target="_blank" class="ci-block">
           <span class="ci-key">LinkedIn</span>
-          <span class="ci-val">linkedin.com/in/goutom-kumer-dash-ratul</span>
+          <span class="ci-val">linkedin.com/in/goutom-dash</span>
         </a>
       </div>
     </div>
@@ -78,7 +78,7 @@ useScrollReveal(sectionRef)
 }
 
 .ci-key {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-weight: 700;
   font-size: 1.1rem;
   text-transform: uppercase;
@@ -86,7 +86,7 @@ useScrollReveal(sectionRef)
 }
 
 .ci-val {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 1rem;
 }
 

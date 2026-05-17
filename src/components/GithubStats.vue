@@ -79,7 +79,7 @@ useScrollReveal(sectionRef)
 }
 
 .stat-label {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -87,14 +87,14 @@ useScrollReveal(sectionRef)
 }
 
 .stat-val {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--text);
 }
 
 .stat-val.link {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 1.2rem;
   text-decoration: underline;
   transition: color 0.2s;
@@ -117,7 +117,7 @@ useScrollReveal(sectionRef)
 }
 
 .density-title {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;

@@ -27,9 +27,9 @@
     <div class="sidebar-section">
       <div class="sidebar-heading">Contact</div>
       <div class="sidebar-quick">
-        <a href="mailto:goutomdash.ratul@gmail.com" class="quick-link">Email</a>
+        <a href="mailto:gkdratul@gmail.com" class="quick-link">Email</a>
         <a href="https://github.com/Ratul-Raha" target="_blank" class="quick-link">GitHub</a>
-        <a href="https://www.linkedin.com/in/goutom-kumer-dash-ratul-7b48471b9/" target="_blank" class="quick-link">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/goutom-dash-7b48471b9/" target="_blank" class="quick-link">LinkedIn</a>
       </div>
     </div>
   </aside>
@@ -62,7 +62,7 @@ function handleSelect(id) {
 
 <style scoped>
 .sidebar {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   padding: 24px 0;
   display: flex;
   flex-direction: column;
@@ -75,7 +75,7 @@ function handleSelect(id) {
 }
 
 .sidebar-heading {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--bg);

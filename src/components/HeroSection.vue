@@ -14,7 +14,7 @@
             and at the incredible team behind <a href="https://wpmanageninja.com" target="_blank">WP Manage Ninja</a>, helping deliver trusted products used by <strong>1.4M+ users</strong> in the WordPress ecosystem.
           </p>
           <p>
-            Architect &middot; Builder &middot; Hacker. Five years in. Still figuring it out.
+            Architect &middot; Builder &middot; Founder. 6 years+. Still figuring it out.
           </p>
           <div class="hero-actions">
             <a href="#projectsSection" class="action-btn">View Projects</a>
@@ -60,7 +60,7 @@ useScrollReveal(heroRef)
 }
 
 .hero-subtitle {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 1.25rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -82,7 +82,7 @@ useScrollReveal(heroRef)
 }
 
 .lead-text {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.5rem;
   line-height: 1.6;
 }
@@ -98,7 +98,7 @@ useScrollReveal(heroRef)
   padding: 2px 8px;
   font-size: 0.85rem;
   font-weight: 700;
-  font-family: var(--font-sans);
+  font-family: var(--font);
   letter-spacing: 1px;
   vertical-align: middle;
 }
@@ -121,7 +121,7 @@ useScrollReveal(heroRef)
   display: inline-block;
   padding: 12px 24px;
   border: 2px solid var(--border);
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-weight: 600;
   font-size: 0.95rem;
   text-transform: uppercase;
