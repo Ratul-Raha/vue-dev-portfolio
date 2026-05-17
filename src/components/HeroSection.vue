@@ -200,46 +200,78 @@ useScrollReveal(heroRef)
 
 @media (max-width: 600px) {
   .hero {
-    padding: 40px 16px 40px;
+    padding: 32px 16px 28px;
+  }
+  .hero-container {
+    gap: 20px;
+  }
+  .hero-header {
+    padding-bottom: 12px;
   }
   .hero-title-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
   }
   .hire-badge {
-    font-size: 0.7rem;
-    padding: 4px 10px;
+    font-size: 0.65rem;
+    padding: 3px 8px;
   }
   .hire-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   .hero-subtitle {
-    font-size: 0.95rem;
-  }
-  .lead-text {
-    font-size: 0.95rem;
-  }
-  .hero-bio {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  .hero-actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .action-btn {
-    text-align: center;
-    padding: 10px 20px;
     font-size: 0.85rem;
   }
+  .hero-bio {
+    gap: 12px;
+  }
+  .lead-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .hero-bio p:not(.lead-text) {
+    font-size: 0.85rem;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .action-btn {
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: var(--font);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: none;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: var(--text);
+    transition: color 0.15s;
+  }
+  .action-btn:hover {
+    background: none;
+    color: var(--accent);
+  }
+  .whatsapp-btn {
+    background: none;
+    color: #25D366;
+    border: none;
+  }
+  .whatsapp-btn:hover {
+    background: none;
+    color: #128C7E;
+  }
   .inc-badge {
-    font-size: 0.7rem;
-    padding: 1px 6px;
+    font-size: 0.65rem;
+    padding: 1px 5px;
   }
 }
 </style>
